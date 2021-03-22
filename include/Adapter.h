@@ -1,10 +1,15 @@
 #pragma once
 
+#include <vector>
 
 class Adapter
 {
-    int get();
 
+    void SetCoordinate(float azimuth, float elevation, float spread);
+
+    void SetSpeakers(const std::vector<float>& speakers)
+
+    std::vector<float> GetVolume()
 };
 
 
