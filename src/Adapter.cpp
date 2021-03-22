@@ -1,8 +1,16 @@
 #include "Adapter.h"
 
-int Adapter::get()
+void Adapter::SetSpeakers(const std::vector<float>& speakers)
 {
-    return 5;
+
 }
 
+std::vector<float> Adapter::GetVolume()
+{
+    return std::vector<float>();
+}
 
+void Adapter::SetCoordinate(float azimuth, float elevation, float spread)
+{
+
+}

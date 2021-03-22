@@ -1,3 +1,6 @@
 [submodule "ThirdParty/HoaLibrary-Light"]
 	path = ThirdParty/HoaLibrary-Light
 	url = https://github.com/CICM/HoaLibrary-Light.git
+[submodule "ThirdParty/googletest"]
+	path = ThirdParty/googletest
+	url = https://github.com/google/googletest.git
