@@ -1,0 +1,13 @@
+#N canvas 528 211 450 300 12;
+#X obj 103 101 hoalight;
+#X obj 96 188 print;
+#X obj 102 47 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 138 52 5 0 0 0 - - -;
+#X floatatom 191 54 5 0 0 0 - - -;
+#X floatatom 233 60 5 0 0 0 - - -;
+#X connect 0 0 1 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 1;
+#X connect 4 0 0 2;
+#X connect 5 0 0 3;
