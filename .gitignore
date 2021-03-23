@@ -6,3 +6,4 @@
 *.so
 *.dylib
 cmake-build-debug
+.idea
