@@ -1,8 +1,8 @@
 #include <gmock/gmock.h>
-#include "Encoder.h"
-#include "Encoder2D.h"
-#include "Encoder3D.h"
-#include "Factory.h"
+#include <Encoder.h>
+#include <Encoder2D.h>
+#include <Encoder3D.h>
+#include <Factory.h>
 
 using namespace testing;
 

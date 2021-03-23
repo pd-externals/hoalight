@@ -11,7 +11,8 @@ add_library(HOALightWrapper
         src/Encoder2D.cpp
         src/Encoder3D.cpp
         src/Decoder.cpp
-        src/Factory.cpp)
+        src/Factory.cpp
+        src/Blauert.cpp)
 
 target_compile_features(HOALightWrapper PUBLIC cxx_std_17)
 target_include_directories(HOALightWrapper PUBLIC include)
