@@ -1,7 +1,7 @@
 #include "Encoder.h"
 
 Encoder::Encoder(Dimension dimension, size_t order, const IFactory& factory)
-: core_(dimension == Dimension::TWO ? factory.CreateEncoder2D(order) : factory.CreateEncoder3D(order))
+: core_(dimension == Dimension::TWO ? factory.createEncoder2D(order) : factory.createEncoder3D(order))
 {
 }
 

@@ -6,25 +6,25 @@
 
 using namespace testing;
 
-TEST(Factory, CreateEncoder)
+TEST(UnitTest_Factory, createEncoder)
 {
-    auto&& encoder = Factory().CreateEncoder(Dimension::THREE, 3);
+    auto&& encoder = Factory().createEncoder(Dimension::THREE, 3);
 
     ASSERT_THAT(encoder, NotNull());
     EXPECT_THAT(encoder.get(), WhenDynamicCastTo<Encoder*>(NotNull()));
 }
 
-TEST(Factory, CreateEncoder2D)
+TEST(UnitTest_Factory, createEncoder2D)
 {
-    auto&& encoder2D = Factory().CreateEncoder2D(3);
+    auto&& encoder2D = Factory().createEncoder2D(3);
 
     ASSERT_THAT(encoder2D, NotNull());
     EXPECT_THAT(encoder2D.get(), WhenDynamicCastTo<Encoder2D*>(NotNull()));
 }
 
-TEST(Factory, CreateEncoder3D)
+TEST(UnitTest_Factory, createEncoder3D)
 {
-    auto&& encoder3D = Factory().CreateEncoder3D(3);
+    auto&& encoder3D = Factory().createEncoder3D(3);
 
     ASSERT_THAT(encoder3D, NotNull());
     EXPECT_THAT(encoder3D.get(), WhenDynamicCastTo<Encoder3D*>(NotNull()));

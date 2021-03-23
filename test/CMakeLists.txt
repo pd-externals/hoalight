@@ -6,6 +6,10 @@ add_executable(HOALightWrapper_Test
         UnitTest_Encoder.cpp
         UnitTest_Factory.cpp)
 
+target_include_directories(HOALightWrapper_Test
+        PRIVATE
+        mocks)
+
 target_link_libraries(HOALightWrapper_Test
         PRIVATE
         HOALightWrapper
