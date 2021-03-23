@@ -8,10 +8,12 @@ add_subdirectory(test)
 add_library(HOALightWrapper
         src/Adapter.cpp
         src/Encoder.cpp
+        src/Encoder2D.cpp
+        src/Encoder3D.cpp
         src/Decoder.cpp
         src/Factory.cpp)
 
 target_compile_features(HOALightWrapper PUBLIC cxx_std_17)
 target_include_directories(HOALightWrapper PUBLIC include)
-target_link_libraries(HOALightWrapper PRIVATE HoaLibrary)
+target_link_libraries(HOALightWrapper PUBLIC HoaLibrary)
 
