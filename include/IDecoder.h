@@ -1,14 +1,13 @@
 #pragma once
 #include <memory>
+#include <vector>
 
 class IDecoder
 {
 public:
     virtual ~IDecoder() = default;
 
-    virtual setSpeakerPosition
-
-    virtual std::vector<float> decode()  = 0;
+    virtual std::vector<float> decode(const std::vector<float>& encodedSample) = 0;
 };
 
 using DecoderPtr = std::unique_ptr<IDecoder>;

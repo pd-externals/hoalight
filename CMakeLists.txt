@@ -11,6 +11,8 @@ add_library(HOALightWrapper
         src/Encoder2D.cpp
         src/Encoder3D.cpp
         src/Decoder.cpp
+        src/Decoder2D.cpp
+        src/Decoder3D.cpp
         src/Factory.cpp
         src/Blauert.cpp)
 
