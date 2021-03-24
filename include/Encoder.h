@@ -21,5 +21,5 @@ public:
     std::vector<float> process() override;
 
 private:
-    EncoderPtr core_;
+    EncoderPtr hoaEncoder_;
 };

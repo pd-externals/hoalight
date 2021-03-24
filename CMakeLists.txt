@@ -6,7 +6,7 @@ add_subdirectory(ThirdParty)
 add_subdirectory(test)
 
 add_library(HOALightWrapper
-        src/Adapter.cpp
+        src/HoaLight.cpp
         src/Encoder.cpp
         src/Encoder2D.cpp
         src/Encoder3D.cpp

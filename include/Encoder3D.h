@@ -17,4 +17,9 @@ public:
     void setElevation(float elevation) override;
 
     std::vector<float> process() override;
+
+private:
+    hoa::Encoder<hoa::Dimension::Hoa3d, float> hoaEncoder_;
+
+    std::vector<float> output_;
 };

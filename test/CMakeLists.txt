@@ -5,7 +5,8 @@ add_executable(HOALightWrapper_Test
         UnitTest_Decoder.cpp
         UnitTest_Encoder.cpp
         UnitTest_Factory.cpp
-        UnitTest_Blauert.cpp)
+        UnitTest_Blauert.cpp
+        IntegrationTest_Encoder2D.cpp)
 
 target_include_directories(HOALightWrapper_Test
         PRIVATE
