@@ -1,15 +1,30 @@
-#N canvas 528 211 450 300 12;
-#X obj 103 101 hoalight;
-#X obj 96 188 print;
-#X obj 102 47 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#N canvas 2652 159 700 420 12;
+#X obj 96 146 hoalight;
+#X obj 96 109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X floatatom 138 52 5 0 0 0 - - -;
-#X floatatom 191 54 5 0 0 0 - - -;
-#X floatatom 233 60 5 0 0 0 - - -;
-#X msg 48 14 define_loudspeakers 2 1 2 3 4;
-#X connect 0 0 1 0;
-#X connect 2 0 0 0;
-#X connect 3 0 0 1;
-#X connect 4 0 0 2;
-#X connect 5 0 0 3;
-#X connect 6 0 0 0;
+#X floatatom 217 80 5 0 0 2 azimuth - -;
+#X floatatom 286 84 5 0 0 2 elevation - -;
+#X floatatom 361 83 5 0 0 2 radius - -;
+#X obj 96 185 unpack 0 0 0 0;
+#X obj 96 231 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 127 232 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 159 232 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 191 232 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X msg 16 31 define_loudspeakers 2 0 90 180 -90;
+#X connect 0 0 5 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 1;
+#X connect 2 0 1 0;
+#X connect 3 0 0 2;
+#X connect 3 0 1 0;
+#X connect 4 0 0 3;
+#X connect 4 0 1 0;
+#X connect 5 0 6 0;
+#X connect 5 1 7 0;
+#X connect 5 2 8 0;
+#X connect 5 3 9 0;
+#X connect 10 0 0 0;

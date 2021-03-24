@@ -16,21 +16,26 @@ typedef struct _hoalight {
     t_float azimuth;
     t_float elevation;
     t_float spread;
-    t_float* out_buf;
-    t_atom* out_list;
     t_outlet *a_out;
   	void* core;
 } t_hoalight;  
  
 void hoalight_bang(t_hoalight *x) {
+    static float buffer[256];
+    static t_atom out_list[256];
 
 	int numSpeakers = getNumberOfSpeakers(x->core);
-    getAmplitudes(x->core, x->out_buf);
+	if(numSpeakers == 0){
+	    post("speakers are not defined yet");
+	    return;
+	}
+
+    getAmplitudes(x->core, buffer);
 
     for(int i = 0; i < numSpeakers; ++i)
-    	SETFLOAT(&x->out_list[i], x->out_buf[i]);
+    	SETFLOAT(&out_list[i], buffer[i]);
 
-    outlet_list(x->a_out, &s_list, numSpeakers, &x->out_list[0]);
+    outlet_list(x->a_out, &s_list, numSpeakers, &out_list[0]);
 }
 
 void hoalight_azimuth(t_hoalight *x, float value) {
@@ -65,10 +70,6 @@ void hoalight_define_loudspeakers(t_hoalight* x, t_symbol *s, int argc, t_atom *
 
 	defineSpeakers(x->core, argc, speakerPositions);
 	free(speakerPositions);
-
-	int numberOfSpeakers = getNumberOfSpeakers(x->core);
-	x->out_buf = realloc(x->out_buf, sizeof(float) * numberOfSpeakers);
-	x->out_list = realloc(x->out_buf, sizeof(t_atom) * numberOfSpeakers);
 }
 
 void *hoalight_new(void) {  
@@ -80,8 +81,6 @@ void *hoalight_new(void) {
 
     x->a_out = outlet_new(&x->x_obj, &s_list);
     x->core = createHoaLight();
-    x->out_buf = NULL;
-    x->out_list = NULL;
 
     return (void *)x;  
 }  
