@@ -18,9 +18,9 @@ public:
 
     bool setRadius(float radius);
 
-    bool setSpeakers(const std::vector<float>& speakers);
+    bool setSpeakers(const std::vector<float>& defineSpeakers);
 
-    std::vector<float> getAmplitude() const;
+    std::vector<float> getAmplitudes() const;
 
 private:
 

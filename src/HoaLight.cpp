@@ -36,11 +36,12 @@ bool HoaLight::setSpeakers(const std::vector<float>& defineSpeakers)
     const auto positions = std::vector(defineSpeakers.begin() + 1, defineSpeakers.end());
     encoder_ = factory_->createEncoder(dimension, order_);
     decoder_ = factory_->createDecoder(dimension, order_, positions);
+    return true;
 }
 
 bool HoaLight::setAzimuth(float azimuth)
 {
-    if(encoder_)
+    if(!encoder_)
         return false;
 
     const auto phi = Blauert::toPhi(azimuth);
@@ -50,7 +51,7 @@ bool HoaLight::setAzimuth(float azimuth)
 
 bool HoaLight::setElevation(float elevation)
 {
-    if(encoder_)
+    if(!encoder_)
         return false;
 
     const auto theta = Blauert::toPhi(elevation);
@@ -60,14 +61,16 @@ bool HoaLight::setElevation(float elevation)
 
 bool HoaLight::setRadius(float radius)
 {
-    if(encoder_)
+    if(!encoder_)
         return false;
     encoder_->setRadius(radius);
     return true;
 }
 
-std::vector<float> HoaLight::getAmplitude() const
+std::vector<float> HoaLight::getAmplitudes() const
 {
+    if(!encoder_)
+        return std::vector<float>();
     return decoder_->decode(encoder_->encode());
 }
 
