@@ -9,7 +9,7 @@ public:
 
     virtual std::vector<float> decode(const std::vector<float>& encodedSample) = 0;
 
-    virtual size_t getNumberOfSpeakers();
+    virtual size_t getNumberOfSpeakers() = 0;
 };
 
 
