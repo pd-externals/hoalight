@@ -51,7 +51,7 @@ TEST_F(UnitTest_HoaLight, setSpeakers_zero_speakers)
 
     auto hoaLight = HoaLight(std::move(factoryMock_));
     auto defineSpeakers = std::vector<float>{};
-    auto result = hoaLight.setSpeakers(defineSpeakers);
+    auto result = hoaLight.defineSpeakers(defineSpeakers);
 
     EXPECT_FALSE(result);
 }
@@ -63,7 +63,7 @@ TEST_F(UnitTest_HoaLight, setSpeakers_insufficient_number_of_speakers)
 
     auto hoaLight = HoaLight(std::move(factoryMock_));
     auto defineSpeakers = std::vector<float>{2};
-    auto result = hoaLight.setSpeakers(defineSpeakers);
+    auto result = hoaLight.defineSpeakers(defineSpeakers);
 
     EXPECT_FALSE(result);
 }
@@ -75,7 +75,7 @@ TEST_F(UnitTest_HoaLight, setSpeakers_unknown_dimension)
 
     auto hoaLight = HoaLight(std::move(factoryMock_));
     auto defineSpeakers = std::vector<float>{1.f, 30.f};
-    auto result = hoaLight.setSpeakers(defineSpeakers);
+    auto result = hoaLight.defineSpeakers(defineSpeakers);
 
     EXPECT_FALSE(result);
 }
@@ -87,7 +87,7 @@ TEST_F(UnitTest_HoaLight, setSpeakers_2D)
 
     auto hoaLight = HoaLight(std::move(factoryMock_));
     auto defineSpeakers = std::vector<float>{2.f, 0.f, 90.f, 180.f, -90.f};
-    auto result = hoaLight.setSpeakers(defineSpeakers);
+    auto result = hoaLight.defineSpeakers(defineSpeakers);
 
     EXPECT_TRUE(result);
 }
@@ -99,7 +99,7 @@ TEST_F(UnitTest_HoaLight, setSpeakers_3D)
 
     auto hoaLight = HoaLight(std::move(factoryMock_));
     auto defineSpeakers = std::vector<float>{3.f, 0.f, 30.f, 0.f, -30.f};
-    auto result = hoaLight.setSpeakers(defineSpeakers);
+    auto result = hoaLight.defineSpeakers(defineSpeakers);
 
     EXPECT_TRUE(result);
 }
@@ -112,7 +112,7 @@ TEST_F(UnitTest_HoaLight, setOrder)
     auto hoaLight = HoaLight(std::move(factoryMock_));
     hoaLight.setOrder(3.f);
     auto defineSpeakers = std::vector<float>{3.f, 0.f, 30.f, 0.f, -30.f};
-    auto result = hoaLight.setSpeakers(defineSpeakers);
+    auto result = hoaLight.defineSpeakers(defineSpeakers);
 
     EXPECT_TRUE(result);
 }
@@ -123,7 +123,7 @@ TEST_F(UnitTest_HoaLight, setAzimuth)
 
     auto hoaLight = HoaLight(std::move(factoryMock_));
     auto defineSpeakers = std::vector<float>{2.f, 0.f, 90.f, 180.f, -90.f};
-    hoaLight.setSpeakers(defineSpeakers);
+    hoaLight.defineSpeakers(defineSpeakers);
 
     EXPECT_TRUE(hoaLight.setAzimuth(90.f));
 }
@@ -143,7 +143,7 @@ TEST_F(UnitTest_HoaLight, setElevation)
 
     auto hoaLight = HoaLight(std::move(factoryMock_));
     auto defineSpeakers = std::vector<float>{3.f, 0.f, 30.f, 0.f, -30.f};
-    hoaLight.setSpeakers(defineSpeakers);
+    hoaLight.defineSpeakers(defineSpeakers);
 
     EXPECT_TRUE(hoaLight.setElevation(90.f));
 }
@@ -163,7 +163,7 @@ TEST_F(UnitTest_HoaLight, setRadius)
 
     auto hoaLight = HoaLight(std::move(factoryMock_));
     auto defineSpeakers = std::vector<float>{3.f, 0.f, 30.f, 0.f, -30.f};
-    hoaLight.setSpeakers(defineSpeakers);
+    hoaLight.defineSpeakers(defineSpeakers);
 
     EXPECT_TRUE(hoaLight.setRadius(2.f));
 }
@@ -187,7 +187,7 @@ TEST_F(UnitTest_HoaLight, getAmplitudes)
 
     auto hoaLight = HoaLight(std::move(factoryMock_));
     auto defineSpeakers = std::vector<float>{3.f, 0.f, 30.f, 0.f, -30.f};
-    hoaLight.setSpeakers(defineSpeakers);
+    hoaLight.defineSpeakers(defineSpeakers);
     hoaLight.getAmplitudes();
 }
 

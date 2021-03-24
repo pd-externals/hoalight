@@ -24,7 +24,7 @@ void HoaLight::setOrder(float order)
     order_ = std::clamp(intOrder, 1, 16);
 }
 
-bool HoaLight::setSpeakers(const std::vector<float>& defineSpeakers)
+bool HoaLight::defineSpeakers(const std::vector<float>& defineSpeakers)
 {
     if(defineSpeakers.size() < 2)
         return false;
