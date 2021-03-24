@@ -31,7 +31,22 @@ void hoalight_bang(t_hoalight *x) {
     	SETFLOAT(&x->out_list[i], x->out_buf[i]);
 
     outlet_list(x->a_out, &s_list, numSpeakers, &x->out_list[0]);
-} 
+}
+
+void hoalight_azimuth(t_hoalight *x, float value) {
+    if(setAzimuth(x->core, value) == 0)
+        post("speakers are not defined yet");
+}
+
+void hoalight_elevation(t_hoalight *x, float value) {
+    if(setElevation(x->core, value) == 0)
+        post("speakers are not defined yet");
+}
+
+void hoalight_radius(t_hoalight *x, float value) {
+    if(setRadius(x->core, value) == 0)
+        post("speakers are not defined yet");
+}
 
 void hoalight_define_loudspeakers(t_hoalight* x, t_symbol *s, int argc, t_atom *argv){	
 	(void)s;
@@ -59,9 +74,9 @@ void hoalight_define_loudspeakers(t_hoalight* x, t_symbol *s, int argc, t_atom *
 void *hoalight_new(void) {  
     t_hoalight *x = (t_hoalight *)pd_new(hoalight_class);  
 
-	floatinlet_new(&x->x_obj, &x->azimuth);
-	floatinlet_new(&x->x_obj, &x->elevation);
-	floatinlet_new(&x->x_obj, &x->spread);
+	inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("azimuth"));
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("elevation"));
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("radius"));
 
     x->a_out = outlet_new(&x->x_obj, &s_list);
     x->core = createHoaLight();
@@ -80,4 +95,7 @@ void hoalight_setup(void) {
         (t_newmethod)hoalight_new, (t_method)hoalight_free, sizeof(t_hoalight), CLASS_DEFAULT, 0);  
     class_addbang(hoalight_class, hoalight_bang);
     class_addmethod(hoalight_class, (t_method)hoalight_define_loudspeakers, gensym("define_loudspeakers"), A_GIMME, 0);
+    class_addmethod(hoalight_class, (t_method)hoalight_azimuth, gensym("azimuth"), A_FLOAT, 0);
+    class_addmethod(hoalight_class, (t_method)hoalight_elevation, gensym("elevation"), A_FLOAT, 0);
+    class_addmethod(hoalight_class, (t_method)hoalight_radius, gensym("radius"), A_FLOAT, 0);
 }
