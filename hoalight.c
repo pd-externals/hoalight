@@ -19,13 +19,13 @@ typedef struct _hoalight {
     t_float* out_buf;
     t_atom* out_list;
     t_outlet *a_out;
-  	void* hoalight;
+  	void* core;
 } t_hoalight;  
  
 void hoalight_bang(t_hoalight *x) {
 
-	int numSpeakers = getNumberOfSpeakers(x->hoalight);
-    getAmplitudes(x->hoalight, x->out_buf);
+	int numSpeakers = getNumberOfSpeakers(x->core);
+    getAmplitudes(x->core, x->out_buf);
 
     for(int i = 0; i < numSpeakers; ++i)
     	SETFLOAT(&x->out_list[i], x->out_buf[i]);
@@ -48,10 +48,10 @@ void hoalight_define_loudspeakers(t_hoalight* x, t_symbol *s, int argc, t_atom *
 		speakerPositions[i] = atom_getfloat(&argv[i]);
 	}
 
-	defineSpeakers(x->hoalight, argc, speakerPositions);
+	defineSpeakers(x->core, argc, speakerPositions);
 	free(speakerPositions);
 
-	int numberOfSpeakers = getNumberOfSpeakers(x->hoalight);
+	int numberOfSpeakers = getNumberOfSpeakers(x->core);
 	x->out_buf = realloc(x->out_buf, sizeof(float) * numberOfSpeakers);
 	x->out_list = realloc(x->out_buf, sizeof(t_atom) * numberOfSpeakers);
 }
@@ -64,7 +64,7 @@ void *hoalight_new(void) {
 	floatinlet_new(&x->x_obj, &x->spread);
 
     x->a_out = outlet_new(&x->x_obj, &s_list);
-    x->hoalight = createHoaLight();
+    x->core = createHoaLight();
     x->out_buf = NULL;
     x->out_list = NULL;
 
@@ -72,7 +72,7 @@ void *hoalight_new(void) {
 }  
 
 void hoalight_free(t_hoalight *x){
-	destroyHoaLight(x->hoalight);
+	destroyHoaLight(x->core);
 }
  
 void hoalight_setup(void) {  
