@@ -11,5 +11,5 @@ public:
 
     MOCK_METHOD1(setElevation, void(float elevation));
 
-    MOCK_METHOD0(process, std::vector<float>());
+    MOCK_METHOD0(encode, std::vector<float>());
 };

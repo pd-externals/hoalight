@@ -18,7 +18,7 @@ public:
 
     void setElevation(float elevation) override;
 
-    std::vector<float> process() override;
+    std::vector<float> encode() override;
 
 private:
     EncoderPtr hoaEncoder_;

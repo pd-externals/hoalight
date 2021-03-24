@@ -20,7 +20,7 @@ void Encoder::setElevation(float elevation)
     hoaEncoder_->setElevation(elevation);
 }
 
-std::vector<float> Encoder::process()
+std::vector<float> Encoder::encode()
 {
-    return hoaEncoder_->process();
+    return hoaEncoder_->encode();
 }

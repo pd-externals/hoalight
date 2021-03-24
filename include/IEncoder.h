@@ -13,7 +13,7 @@ public:
 
     virtual void setElevation(float elevation) = 0;
 
-    virtual std::vector<float> process() = 0;
+    virtual std::vector<float> encode() = 0;
 };
 
 using EncoderPtr = std::unique_ptr<IEncoder>;

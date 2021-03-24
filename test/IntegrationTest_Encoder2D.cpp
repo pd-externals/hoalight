@@ -6,7 +6,7 @@ using namespace testing;
 TEST(IntegrationTest_Encoder2D, first_order)
 {
     auto&& encoder2D = Encoder2D(1);
-    auto encoded = encoder2D.process();
+    auto encoded = encoder2D.encode();
 
     EXPECT_EQ(4, encoded.size());
 }
@@ -14,7 +14,7 @@ TEST(IntegrationTest_Encoder2D, first_order)
 TEST(IntegrationTest_Encoder2D, third_order)
 {
     auto&& encoder2D = Encoder2D(3);
-    auto encoded = encoder2D.process();
+    auto encoded = encoder2D.encode();
 
     EXPECT_EQ(16, encoded.size());
 }

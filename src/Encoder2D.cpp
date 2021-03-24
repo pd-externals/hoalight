@@ -22,7 +22,7 @@ void Encoder2D::setElevation(float elevation)
     // no operation
 }
 
-std::vector<float> Encoder2D::process()
+std::vector<float> Encoder2D::encode()
 {
     const static auto input = 1.f;
     hoaEncoder_.process(&input, output_.data());

@@ -23,7 +23,7 @@ void Encoder3D::setElevation(float elevation)
     hoaEncoder_.setElevation(elevation);
 }
 
-std::vector<float> Encoder3D::process()
+std::vector<float> Encoder3D::encode()
 {
     const static auto input = 1.f;
     hoaEncoder_.process(&input, output_.data());
