@@ -35,14 +35,14 @@ TEST_F(UnitTest_Decoder, construction_two_dimension)
 {
     EXPECT_CALL(factoryMock_, createDecoder2D(3, positions_));
 
-    Decoder(Dimension::TWO, 3, positions_, factoryMock_);
+    Decoder(Dimension::Two, 3, positions_, factoryMock_);
 }
 
 TEST_F(UnitTest_Decoder, construction_three_dimension)
 {
     EXPECT_CALL(factoryMock_, createDecoder3D(3, positions_));
 
-    Decoder(Dimension::THREE, 3, positions_, factoryMock_);
+    Decoder(Dimension::Three, 3, positions_, factoryMock_);
 }
 
 TEST_F(UnitTest_Decoder, decode)
@@ -50,6 +50,6 @@ TEST_F(UnitTest_Decoder, decode)
     auto&& encodedSample = std::vector<float>();
     EXPECT_CALL(*decoderMockPtr_, decode(encodedSample));
 
-    auto&& decoder = Decoder(Dimension::THREE, 3, positions_, factoryMock_);
+    auto&& decoder = Decoder(Dimension::Three, 3, positions_, factoryMock_);
     decoder.decode(encodedSample);
 }

@@ -2,6 +2,7 @@
 
 enum class Dimension
 {
-    TWO,
-    THREE
+    Two,
+    Three,
+    Unknown
 };

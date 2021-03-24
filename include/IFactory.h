@@ -21,3 +21,5 @@ public:
 
     virtual DecoderPtr createDecoder3D(size_t order, const std::vector<float>& positions) const = 0;
 };
+
+using FactoryPtr = std::unique_ptr<IFactory>;

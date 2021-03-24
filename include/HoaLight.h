@@ -1,12 +1,16 @@
 #pragma once
 
 #include <vector>
-#include <IEncoder.h>
-#include <IDecoder.h>
+#include "IEncoder.h"
+#include "IDecoder.h"
+#include "IFactory.h"
 
 class HoaLight
 {
 public:
+    HoaLight(FactoryPtr factory);
+
+    void setOrder(float order);
 
     bool setAzimuth(float azimuth);
 
@@ -20,7 +24,8 @@ public:
 
 private:
 
-    EncoderPtr encoderPtr_;
-
-
+    FactoryPtr factory_;
+    EncoderPtr encoder_;
+    DecoderPtr decoder_;
+    size_t order_;
 };

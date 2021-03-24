@@ -1,7 +1,7 @@
 #include "Encoder.h"
 
 Encoder::Encoder(Dimension dimension, size_t order, const IFactory& factory)
-: hoaEncoder_(dimension == Dimension::TWO ? factory.createEncoder2D(order) : factory.createEncoder3D(order))
+: hoaEncoder_(dimension == Dimension::Two ? factory.createEncoder2D(order) : factory.createEncoder3D(order))
 {
 }
 

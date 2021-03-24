@@ -8,7 +8,7 @@ using namespace testing;
 
 TEST(UnitTest_Factory, createEncoder)
 {
-    auto&& encoder = Factory().createEncoder(Dimension::THREE, 3);
+    auto&& encoder = Factory().createEncoder(Dimension::Three, 3);
 
     ASSERT_THAT(encoder, NotNull());
     EXPECT_THAT(encoder.get(), WhenDynamicCastTo<Encoder*>(NotNull()));

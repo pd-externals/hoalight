@@ -4,7 +4,7 @@ namespace
 {
     DecoderPtr createDecoder(Dimension dimension, size_t order, const std::vector<float>& positions, const IFactory& factory)
     {
-        return dimension == Dimension::TWO ?
+        return dimension == Dimension::Two ?
             factory.createDecoder2D(order, positions) :
             factory.createDecoder3D(order, positions);
     }
