@@ -12,6 +12,9 @@ class.sources = hoalight.c
 datafiles = README.md LICENSE.txt CHANGELOG.txt \
             $(wildcard *.pd) $(wildcard examples/*.pd)
 
+cflags = -I./include -mmacosx-version-min=10.9
+ldflags = -L./lib -lHOALightWrapper
+
 # include Makefile.pdlibbuilder, allow override using PDLIBBUILDER_DIR variable
 PDLIBBUILDER_DIR=.
 include $(PDLIBBUILDER_DIR)/Makefile.pdlibbuilder

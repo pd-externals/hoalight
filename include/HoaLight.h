@@ -22,6 +22,8 @@ public:
 
     std::vector<float> getAmplitudes() const;
 
+    size_t getNumberOfSpeakers() const;
+
 private:
 
     FactoryPtr factory_;

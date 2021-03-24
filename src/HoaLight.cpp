@@ -74,3 +74,7 @@ std::vector<float> HoaLight::getAmplitudes() const
     return decoder_->decode(encoder_->encode());
 }
 
+size_t HoaLight::getNumberOfSpeakers() const
+{
+    return decoder_->getNumberOfSpeakers();
+}

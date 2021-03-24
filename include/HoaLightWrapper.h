@@ -1,13 +1,19 @@
-#include "HoaLight.h"
 
-extern "C"
-{
-    HoaLight* createHoaLight();
-    void destroyHoaLight(HoaLight* hoaLight);
-    void setOrder(HoaLight* hoaLight, float order);
-    float defineSpeakers(HoaLight* hoaLight, int argc, float *argv);
-    float setAzimuth(HoaLight* hoaLight, float azimuth);
-    float setElevation(HoaLight* hoaLight, float azimuth);
-    float setRadius(HoaLight* hoaLight, float radius);
-    float getAmplitude(HoaLight* hoaLight, float *amplitude);
+#ifdef __cplusplus
+extern "C"{
+#endif
+
+    void* createHoaLight();
+    void destroyHoaLight(void* hoaLight);
+    void setOrder(void* hoaLight, float order);
+    int defineSpeakers(void* hoaLight, int argc, float *argv);
+    int setAzimuth(void* hoaLight, float azimuth);
+    int setElevation(void* hoaLight, float azimuth);
+    int setRadius(void* hoaLight, float radius);
+    int getAmplitudes(void* hoaLight, float *amplitude);
+    int getNumberOfSpeakers(void* hoaLight);
+
+#ifdef __cplusplus
 }
+#endif
+

@@ -12,6 +12,8 @@ public:
 
     std::vector<float> decode(const std::vector<float>& encodedSample) override;
 
+    size_t getNumberOfSpeakers() override;
+
 private:
 
     hoa::DecoderRegular<hoa::Dimension::Hoa3d, float> hoaDecoder_;

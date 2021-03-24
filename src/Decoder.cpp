@@ -10,7 +10,6 @@ namespace
     }
 }
 
-
 Decoder::Decoder(Dimension dimension, size_t order, const std::vector<float>& positions, const IFactory& factory)
 : hoaDecoder_(createDecoder(dimension, order, positions, factory))
 {
@@ -19,4 +18,9 @@ Decoder::Decoder(Dimension dimension, size_t order, const std::vector<float>& po
 std::vector<float> Decoder::decode(const std::vector<float>& encodedSample)
 {
     return hoaDecoder_->decode(encodedSample);
+}
+
+size_t Decoder::getNumberOfSpeakers()
+{
+    return hoaDecoder_->getNumberOfSpeakers();
 }

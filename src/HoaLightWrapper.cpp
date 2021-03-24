@@ -1,49 +1,56 @@
 #include "HoaLightWrapper.h"
 #include "Factory.h"
+#include "HoaLight.h"
 
-HoaLight* createHoaLight()
+void* createHoaLight()
 {
     auto&& hoaLight = std::make_unique<HoaLight>(std::make_unique<Factory>());
-    return hoaLight.release();
+    return static_cast<void*>(hoaLight.release());
 }
 
-void destroyHoaLight(HoaLight* hoaLight)
+void destroyHoaLight(void* hoaLight)
 {
-    auto&& condemned = std::unique_ptr<HoaLight>(hoaLight);
+    auto&& condemned = std::unique_ptr<HoaLight>(static_cast<HoaLight*>(hoaLight));
 }
 
-void setOrder(HoaLight* hoaLight, float order)
+void setOrder(void* hoaLight, float order)
 {
-    hoaLight->setOrder(order);
+    static_cast<HoaLight*>(hoaLight)->setOrder(order);
 }
 
-float defineSpeakers(HoaLight* hoaLight, int argc, float* argv)
+int defineSpeakers(void* hoaLight, int argc, float* argv)
 {
     auto args = std::vector<float>(argv, argv+argc);
-    return hoaLight->defineSpeakers(args) ? 1.f : 0.f;
+    return static_cast<HoaLight*>(hoaLight)->defineSpeakers(args) ? 1 : 0;
 }
 
-float setAzimuth(HoaLight* hoaLight, float azimuth)
+int setAzimuth(void* hoaLight, float azimuth)
 {
-    return hoaLight->setAzimuth(azimuth) ? 1.f : 0.f;
+    return static_cast<HoaLight*>(hoaLight)->setAzimuth(azimuth) ? 1: 0;
 }
 
-float setElevation(HoaLight* hoaLight, float elevation)
+int setElevation(void* hoaLight, float elevation)
 {
-    return hoaLight->setElevation(elevation) ? 1.f : 0.f;
+    return static_cast<HoaLight*>(hoaLight)->setElevation(elevation) ? 1 : 0;
 }
 
-float setRadius(HoaLight* hoaLight, float radius)
+int setRadius(void* hoaLight, float radius)
 {
-    return hoaLight->setRadius(radius) ? 1.f : 0.f;
+    return static_cast<HoaLight*>(hoaLight)->setRadius(radius) ? 1 : 0;
 }
 
-float getAmplitude(HoaLight* hoaLight, float* outAmplitude)
+int getAmplitudes(void* hoaLight, float* outAmplitude)
 {
-    auto amps = hoaLight->getAmplitudes();
+    auto amps = static_cast<HoaLight*>(hoaLight)->getAmplitudes();
     if(amps.empty())
-        return 0.f;
+        return 0;
 
     std::memcpy(outAmplitude, amps.data(), sizeof(float) * amps.size());
-    return 1.f;
+    return 1;
+}
+
+int getNumberOfSpeakers(void* hoaLight)
+{
+    auto numSpeakers = static_cast<HoaLight*>(hoaLight)->getNumberOfSpeakers();
+    return static_cast<int>(numSpeakers);
 }

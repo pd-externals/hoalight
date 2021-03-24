@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/lib)
+set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9")
 project(HOALightWrapper)
 
 add_subdirectory(ThirdParty)
