@@ -16,7 +16,6 @@ protected:
         encoderMock_ = std::make_unique<NiceMock<EncoderMock>>();
         decoderMock_ = std::make_unique<NiceMock<DecoderMock>>();
 
-        factoryMockPtr_ = factoryMock_.get();
         encoderMockPtr_ = encoderMock_.get();
         decoderMockPtr_ = decoderMock_.get();
 
@@ -37,11 +36,9 @@ protected:
     std::unique_ptr<EncoderMock> encoderMock_;
     std::unique_ptr<DecoderMock> decoderMock_;
 
-    FactoryMock* factoryMockPtr_;
     EncoderMock* encoderMockPtr_;
     DecoderMock* decoderMockPtr_;
 
-    std::vector<float> positions_;
 };
 
 TEST_F(UnitTest_HoaLight, setSpeakers_zero_speakers)
@@ -104,22 +101,21 @@ TEST_F(UnitTest_HoaLight, setSpeakers_3D)
     EXPECT_TRUE(result);
 }
 
-TEST_F(UnitTest_HoaLight, setOrder)
+
+TEST_F(UnitTest_HoaLight, setOrder_invalid)
 {
-    EXPECT_CALL(*factoryMock_, createEncoder(_, 3)).Times(1);
-    EXPECT_CALL(*factoryMock_, createDecoder(_, 3, _)).Times(1);
+    EXPECT_CALL(*factoryMock_, createEncoder(_, 3)).Times(0);
+    EXPECT_CALL(*factoryMock_, createDecoder(_, 3, _)).Times(0);
 
     auto hoaLight = HoaLight(std::move(factoryMock_));
-    hoaLight.setOrder(3.f);
-    auto defineSpeakers = std::vector<float>{3.f, 0.f, 30.f, 0.f, -30.f};
-    auto result = hoaLight.defineSpeakers(defineSpeakers);
+    auto result = hoaLight.setOrder(3.f);
 
-    EXPECT_TRUE(result);
+    EXPECT_FALSE(result);
 }
 
 TEST_F(UnitTest_HoaLight, setAzimuth)
 {
-    EXPECT_CALL(*encoderMockPtr_, setAzimuth(0.f)).Times(1);
+    EXPECT_CALL(*encoderMockPtr_, setAzimuth(90.f)).Times(1);
 
     auto hoaLight = HoaLight(std::move(factoryMock_));
     auto defineSpeakers = std::vector<float>{2.f, 0.f, 90.f, 180.f, -90.f};
@@ -139,7 +135,7 @@ TEST_F(UnitTest_HoaLight, setAzimuth_invalid)
 
 TEST_F(UnitTest_HoaLight, setElevation)
 {
-    EXPECT_CALL(*encoderMockPtr_, setElevation(0.f)).Times(1);
+    EXPECT_CALL(*encoderMockPtr_, setElevation(90.f)).Times(1);
 
     auto hoaLight = HoaLight(std::move(factoryMock_));
     auto defineSpeakers = std::vector<float>{3.f, 0.f, 30.f, 0.f, -30.f};

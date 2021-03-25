@@ -21,7 +21,7 @@ void Encoder::setAzimuth(float azimuth)
 
 void Encoder::setElevation(float elevation)
 {
-    const auto theta = Blauert::toPhi(elevation);
+    const auto theta = Blauert::toTheta(elevation);
     hoaEncoder_->setElevation(theta);
 }
 

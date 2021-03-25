@@ -5,7 +5,7 @@ extern "C"{
 
     void* createHoaLight();
     void destroyHoaLight(void* hoaLight);
-    void setOrder(void* hoaLight, float order);
+    int setOrder(void* hoaLight, float order);
     int defineSpeakers(void* hoaLight, int argc, float *argv);
     int setAzimuth(void* hoaLight, float azimuth);
     int setElevation(void* hoaLight, float azimuth);

@@ -10,7 +10,7 @@ class HoaLight
 public:
     HoaLight(FactoryPtr factory);
 
-    void setOrder(float order);
+    bool setOrder(float order);
 
     bool setAzimuth(float azimuth);
 

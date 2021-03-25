@@ -1,5 +1,6 @@
 #include <gmock/gmock.h>
 #include <Encoder.h>
+#include <Blauert.h>
 
 #include "EncoderMock.h"
 #include "FactoryMock.h"
@@ -43,17 +44,41 @@ TEST_F(UnitTest_Encoder, construction_three_dimension)
     Encoder(Dimension::Three, 3, factoryMock_);
 }
 
-TEST_F(UnitTest_Encoder, setRadius)
+TEST_F(UnitTest_Encoder, setRadius_radius_100)
 {
-    EXPECT_CALL(*encoderMockPtr_, setRadius(3.0f));
+    EXPECT_CALL(*encoderMockPtr_, setRadius(0.0f));
 
     auto&& encoder = Encoder(Dimension::Three, 3, factoryMock_);
-    encoder.setRadius(3.0f);
+    encoder.setRadius(100.0f);
+}
+
+TEST_F(UnitTest_Encoder, setRadius_raidus_0)
+{
+    EXPECT_CALL(*encoderMockPtr_, setRadius(1.0f));
+
+    auto&& encoder = Encoder(Dimension::Three, 3, factoryMock_);
+    encoder.setRadius(0.0f);
+}
+
+TEST_F(UnitTest_Encoder, setRadius_negative)
+{
+    EXPECT_CALL(*encoderMockPtr_, setRadius(1.0f));
+
+    auto&& encoder = Encoder(Dimension::Three, 3, factoryMock_);
+    encoder.setRadius(-0.01f);
+}
+
+TEST_F(UnitTest_Encoder, setRadius_exceeds_100)
+{
+    EXPECT_CALL(*encoderMockPtr_, setRadius(0.0f));
+
+    auto&& encoder = Encoder(Dimension::Three, 3, factoryMock_);
+    encoder.setRadius(100.1f);
 }
 
 TEST_F(UnitTest_Encoder, setAzimuth)
 {
-    EXPECT_CALL(*encoderMockPtr_, setAzimuth(45.0f));
+    EXPECT_CALL(*encoderMockPtr_, setAzimuth(Blauert::toPhi(45.0f)));
 
     auto&& encoder = Encoder(Dimension::Three, 3, factoryMock_);
     encoder.setAzimuth(45.0f);
@@ -61,7 +86,7 @@ TEST_F(UnitTest_Encoder, setAzimuth)
 
 TEST_F(UnitTest_Encoder, setElevation)
 {
-    EXPECT_CALL(*encoderMockPtr_, setElevation(30.0f));
+    EXPECT_CALL(*encoderMockPtr_, setElevation(Blauert::toTheta(30.0f)));
 
     auto&& encoder = Encoder(Dimension::Three, 3, factoryMock_);
     encoder.setElevation(30.0f);

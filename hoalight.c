@@ -54,7 +54,8 @@ void hoalight_radius(t_hoalight *x, float value) {
 }
 
 void hoalight_order(t_hoalight *x, float value) {
-    setOrder(x->core, value);
+    if(setOrder(x->core, value) == 0)
+        post("speakers are not defined yet");
 }
 
 void hoalight_define_loudspeakers(t_hoalight* x, t_symbol *s, int argc, t_atom *argv){	

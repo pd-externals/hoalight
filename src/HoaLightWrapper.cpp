@@ -13,9 +13,9 @@ void destroyHoaLight(void* hoaLight)
     auto&& condemned = std::unique_ptr<HoaLight>(static_cast<HoaLight*>(hoaLight));
 }
 
-void setOrder(void* hoaLight, float order)
+int setOrder(void* hoaLight, float order)
 {
-    static_cast<HoaLight*>(hoaLight)->setOrder(order);
+    return static_cast<HoaLight*>(hoaLight)->setOrder(order) ? 1 : 0;
 }
 
 int defineSpeakers(void* hoaLight, int argc, float* argv)

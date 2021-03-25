@@ -17,11 +17,15 @@ HoaLight::HoaLight(FactoryPtr factory)
 , order_(1)
 {}
 
-void HoaLight::setOrder(float order)
+bool HoaLight::setOrder(float order)
 {
+    if(positions_.empty())
+        return false;
+
     auto intOrder = static_cast<int>(order);
     order_ = std::clamp(intOrder, 1, 16);
     updateCore();
+    return true;
 }
 
 bool HoaLight::defineSpeakers(const std::vector<float>& defineSpeakers)
