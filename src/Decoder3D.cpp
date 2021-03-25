@@ -1,4 +1,5 @@
 #include "Decoder3D.h"
+#include "Blauert.h"
 
 Decoder3D::Decoder3D(size_t order, const std::vector<float>& positions)
 : hoaDecoder_(order, positions.size()/2)
@@ -8,8 +9,8 @@ Decoder3D::Decoder3D(size_t order, const std::vector<float>& positions)
 
     for(auto i = size_t(0); i < numSpeaker; ++i)
     {
-        hoaDecoder_.setPlanewaveAzimuth(i, positions[i*2]);
-        hoaDecoder_.setPlanewaveElevation(i, positions[i*2+1]);
+        hoaDecoder_.setPlanewaveAzimuth(i, Blauert::toPhi(positions[i*2]));
+        hoaDecoder_.setPlanewaveElevation(i, Blauert::toTheta(positions[i*2+1]));
     }
     hoaDecoder_.prepare();
 }

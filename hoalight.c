@@ -53,6 +53,10 @@ void hoalight_radius(t_hoalight *x, float value) {
         post("speakers are not defined yet");
 }
 
+void hoalight_order(t_hoalight *x, float value) {
+    setOrder(x->core, value);
+}
+
 void hoalight_define_loudspeakers(t_hoalight* x, t_symbol *s, int argc, t_atom *argv){	
 	(void)s;
 
@@ -73,9 +77,9 @@ void hoalight_define_loudspeakers(t_hoalight* x, t_symbol *s, int argc, t_atom *
 }
 
 void *hoalight_new(void) {  
-    t_hoalight *x = (t_hoalight *)pd_new(hoalight_class);  
+    t_hoalight *x = (t_hoalight *)pd_new(hoalight_class);
 
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("azimuth"));
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("azimuth"));
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("elevation"));
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("radius"));
 
@@ -97,4 +101,5 @@ void hoalight_setup(void) {
     class_addmethod(hoalight_class, (t_method)hoalight_azimuth, gensym("azimuth"), A_FLOAT, 0);
     class_addmethod(hoalight_class, (t_method)hoalight_elevation, gensym("elevation"), A_FLOAT, 0);
     class_addmethod(hoalight_class, (t_method)hoalight_radius, gensym("radius"), A_FLOAT, 0);
+    class_addmethod(hoalight_class, (t_method)hoalight_order, gensym("order"), A_FLOAT, 0);
 }

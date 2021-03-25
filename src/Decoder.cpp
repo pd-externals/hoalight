@@ -1,4 +1,5 @@
 #include "Decoder.h"
+#include <algorithm>
 
 namespace
 {

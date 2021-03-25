@@ -25,9 +25,14 @@ public:
     size_t getNumberOfSpeakers() const;
 
 private:
-
     FactoryPtr factory_;
+
     EncoderPtr encoder_;
     DecoderPtr decoder_;
+
     size_t order_;
+    Dimension dimension_;
+    std::vector<float> positions_;
+
+    void updateCore();
 };

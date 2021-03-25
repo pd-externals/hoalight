@@ -1,4 +1,5 @@
 #include "Decoder2D.h"
+#include "Blauert.h"
 
 Decoder2D::Decoder2D(size_t order, const std::vector<float>& positions)
 : hoaDecoder_(order, positions.size())
@@ -7,7 +8,7 @@ Decoder2D::Decoder2D(size_t order, const std::vector<float>& positions)
     output_.resize(numSpeaker);
     for(auto i = size_t(0); i < numSpeaker; ++i)
     {
-        hoaDecoder_.setPlanewaveAzimuth(i, positions[i]);
+        hoaDecoder_.setPlanewaveAzimuth(i, Blauert::toPhi(positions[i]));
     }
     hoaDecoder_.prepare();
 }
