@@ -9,8 +9,7 @@ public:
 
     virtual std::vector<float> decode(const std::vector<float>& encodedSample) = 0;
 
-    virtual size_t getNumberOfSpeakers() = 0;
+    virtual size_t getNumberOfSpeakers() const = 0;
 };
-
 
 using DecoderPtr = std::unique_ptr<IDecoder>;

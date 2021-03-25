@@ -20,7 +20,7 @@ std::vector<float> Decoder::decode(const std::vector<float>& encodedSample)
     return hoaDecoder_->decode(encodedSample);
 }
 
-size_t Decoder::getNumberOfSpeakers()
+size_t Decoder::getNumberOfSpeakers() const
 {
     return hoaDecoder_->getNumberOfSpeakers();
 }

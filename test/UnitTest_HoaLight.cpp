@@ -201,3 +201,21 @@ TEST_F(UnitTest_HoaLight, getAmplitudes_invalid)
 
     EXPECT_EQ(0, result.size());
 }
+
+TEST_F(UnitTest_HoaLight, getNumberOfSpeakers)
+{
+    EXPECT_CALL(*decoderMockPtr_, getNumberOfSpeakers()).Times(1);
+
+    auto hoaLight = HoaLight(std::move(factoryMock_));
+    auto defineSpeakers = std::vector<float>{3.f, 0.f, 30.f, 0.f, -30.f};
+    hoaLight.defineSpeakers(defineSpeakers);
+    hoaLight.getNumberOfSpeakers();
+}
+
+TEST_F(UnitTest_HoaLight, getNumberOfSpeakers_invalid)
+{
+    EXPECT_CALL(*decoderMockPtr_, getNumberOfSpeakers()).Times(0);
+
+    auto hoaLight = HoaLight(std::move(factoryMock_));
+    hoaLight.getNumberOfSpeakers();
+}

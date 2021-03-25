@@ -18,7 +18,7 @@ std::vector<float> Decoder2D::decode(const std::vector<float>& encodedSample)
     return output_;
 }
 
-size_t Decoder2D::getNumberOfSpeakers()
+size_t Decoder2D::getNumberOfSpeakers() const
 {
     return hoaDecoder_.getNumberOfPlanewaves();
 }

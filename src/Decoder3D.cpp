@@ -20,7 +20,7 @@ std::vector<float> Decoder3D::decode(const std::vector<float>& encodedSample)
     return output_;
 }
 
-size_t Decoder3D::getNumberOfSpeakers()
+size_t Decoder3D::getNumberOfSpeakers() const
 {
     return hoaDecoder_.getNumberOfPlanewaves();
 }
