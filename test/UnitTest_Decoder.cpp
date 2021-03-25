@@ -11,7 +11,7 @@ class UnitTest_Decoder : public ::testing::Test
 protected:
     void SetUp() override
     {
-        decoderMock_ = std::make_unique<DecoderMock>();
+        decoderMock_ = std::make_unique<NiceMock<DecoderMock>>();
         decoderMockPtr_ = decoderMock_.get();
 
         ON_CALL(factoryMock_, createDecoder3D(_, _))
@@ -52,4 +52,13 @@ TEST_F(UnitTest_Decoder, decode)
 
     auto&& decoder = Decoder(Dimension::Three, 3, positions_, factoryMock_);
     decoder.decode(encodedSample);
+}
+
+TEST_F(UnitTest_Decoder, getNumberOfSpeakers)
+{
+    ON_CALL(*decoderMockPtr_, getNumberOfSpeakers()).WillByDefault(Return(8));
+
+    auto&& decoder = Decoder(Dimension::Three, 3, positions_, factoryMock_);
+
+    EXPECT_EQ(8, decoder.getNumberOfSpeakers());
 }
