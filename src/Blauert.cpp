@@ -15,6 +15,6 @@ namespace Blauert
     float toTheta(float elevation)
     {
         auto clamped = std::clamp(elevation, -90.f, 90.f);
-        return (1.f-(clamped + 90.f)/180.f) * pi;
+        return clamped/180.f * pi;
     }
 }

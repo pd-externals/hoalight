@@ -10,7 +10,7 @@ Decoder2D::Decoder2D(size_t order, const std::vector<float>& positions)
     {
         hoaDecoder_.setPlanewaveAzimuth(i, Blauert::toPhi(positions[i]));
     }
-    hoaDecoder_.prepare();
+    hoaDecoder_.prepare(1);
 }
 
 std::vector<float> Decoder2D::decode(const std::vector<float>& encodedSample)
