@@ -22,7 +22,7 @@ typedef struct _hoalight {
  
 void hoalight_bang(t_hoalight *x) {
     static float buffer[256];
-    static t_atom out_list[256];
+    static t_atom out_list[2];
 
 	int numSpeakers = getNumberOfSpeakers(x->core);
 	if(numSpeakers == 0){
@@ -33,9 +33,11 @@ void hoalight_bang(t_hoalight *x) {
     getAmplitudes(x->core, buffer);
 
     for(int i = 0; i < numSpeakers; ++i)
-    	SETFLOAT(&out_list[i], buffer[i]);
-
-    outlet_list(x->a_out, &s_list, numSpeakers, &out_list[0]);
+    {
+        SETFLOAT(&out_list[0], i);
+        SETFLOAT(&out_list[1], buffer[i]);
+        outlet_list(x->a_out, &s_list, 2, &out_list[0]);
+    }
 }
 
 void hoalight_azimuth(t_hoalight *x, float value) {
