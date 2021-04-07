@@ -1,7 +1,9 @@
 #pragma once
 
-#include "IEncoder.h"
 #include "Dimension.h"
+#include "IEncoder.h"
+#include "IWider.h"
+#include "IOptim.h"
 #include "IDecoder.h"
 
 class IFactory
@@ -14,6 +16,18 @@ public:
     virtual EncoderPtr createEncoder2D(size_t order) const = 0;
 
     virtual EncoderPtr createEncoder3D(size_t order) const = 0;
+
+    virtual WiderPtr createWider2D(size_t order) const = 0;
+
+    virtual WiderPtr createWider3D(size_t order) const = 0;
+
+    virtual OptimPtr createOptimMaxRe2D(size_t order) const = 0;
+
+    virtual OptimPtr createOptimMaxRe3D(size_t order) const = 0;
+
+    virtual OptimPtr createOptimInPhase2D(size_t order) const = 0;
+
+    virtual OptimPtr createOptimInPhase3D(size_t order) const = 0;
 
     virtual DecoderPtr createDecoder(Dimension dimension, size_t order, const std::vector<float>& positions) const = 0;
 

@@ -12,6 +12,18 @@ public:
 
     EncoderPtr createEncoder3D(size_t order) const override;
 
+    WiderPtr createWider2D(size_t order) const override;
+
+    WiderPtr createWider3D(size_t order) const override;
+
+    OptimPtr createOptimMaxRe2D(size_t order) const override;
+
+    OptimPtr createOptimMaxRe3D(size_t order) const override;
+
+    OptimPtr createOptimInPhase2D(size_t order) const override;
+
+    OptimPtr createOptimInPhase3D(size_t order) const override;
+
     DecoderPtr createDecoder(Dimension dimension, size_t order,
                              const std::vector<float>& positions) const override;
 

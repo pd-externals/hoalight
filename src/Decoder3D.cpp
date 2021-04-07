@@ -14,9 +14,9 @@ Decoder3D::Decoder3D(size_t order, const std::vector<float>& positions)
     }
 }
 
-std::vector<float> Decoder3D::decode(const std::vector<float>& encodedSample)
+std::vector<float> Decoder3D::decode(const std::vector<float>& bFormat)
 {
-    hoaDecoder_.process(encodedSample.data(), output_.data());
+    hoaDecoder_.process(bFormat.data(), output_.data());
     return output_;
 }
 

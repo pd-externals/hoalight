@@ -12,6 +12,12 @@ add_library(HOALightWrapper
         src/Encoder.cpp
         src/Encoder2D.cpp
         src/Encoder3D.cpp
+        src/Wider2D.cpp
+        src/Wider3D.cpp
+        src/OptimInPhase2D.cpp
+        src/OptimInPhase3D.cpp
+        src/OptimMaxRe2D.cpp
+        src/OptimMaxRe3D.cpp
         src/Decoder.cpp
         src/Decoder2D.cpp
         src/Decoder3D.cpp

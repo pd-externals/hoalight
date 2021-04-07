@@ -10,7 +10,7 @@ public:
 
     ~Decoder2D() override = default;
 
-    std::vector<float> decode(const std::vector<float>& encodedSample) override;
+    std::vector<float> decode(const std::vector<float>& bFormat) override;
 
     size_t getNumberOfSpeakers() const override;
 
