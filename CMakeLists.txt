@@ -20,6 +20,10 @@ add_library(HOALightWrapper
         src/HoaLightWrapper.cpp)
 
 target_compile_features(HOALightWrapper PUBLIC cxx_std_17)
-target_include_directories(HOALightWrapper PUBLIC include)
+target_include_directories(HOALightWrapper
+        PUBLIC
+        include
+        ThirdParty/HoaLibrary-Light/Sources)
+
 target_link_libraries(HOALightWrapper PUBLIC HoaLibrary)
 

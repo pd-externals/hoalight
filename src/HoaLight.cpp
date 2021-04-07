@@ -61,14 +61,6 @@ bool HoaLight::setElevation(float elevation)
     return true;
 }
 
-bool HoaLight::setRadius(float radius)
-{
-    if(!encoder_)
-        return false;
-    encoder_->setRadius(radius);
-    return true;
-}
-
 std::vector<float> HoaLight::getAmplitudes() const
 {
     if(!encoder_)

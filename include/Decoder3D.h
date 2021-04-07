@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IDecoder.h"
-#include "Hoa_Decoder.hpp"
+#include <Hoa.hpp>
 
 class Decoder3D : public IDecoder
 {
@@ -16,7 +16,7 @@ public:
 
 private:
 
-    hoa::DecoderRegular<hoa::Dimension::Hoa3d, float> hoaDecoder_;
+    hoa::Decoder<hoa::Dimension::Hoa3d, float>::Regular hoaDecoder_;
 
     std::vector<float> output_;
 };

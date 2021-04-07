@@ -10,15 +10,13 @@ public:
 
     ~Encoder2D() = default;
 
-    void setRadius(float radius) override;
-
     void setAzimuth(float azimuth) override;
 
     void setElevation(float elevation) override;
 
     std::vector<float> encode() override;
 private:
-    hoa::Encoder<hoa::Dimension::Hoa2d, float> hoaEncoder_;
+    hoa::Encoder<hoa::Dimension::Hoa2d, float>::Basic hoaEncoder_;
 
     std::vector<float> output_;
 };

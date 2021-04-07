@@ -7,8 +7,6 @@ public:
 
     virtual ~IEncoder() = default;
 
-    virtual void setRadius(float radius) = 0;
-
     virtual void setAzimuth(float azimuth) = 0;
 
     virtual void setElevation(float elevation) = 0;

@@ -12,8 +12,6 @@ public:
 
     ~Encoder() = default;
 
-    void setRadius(float radius) override;
-
     void setAzimuth(float azimuth) override;
 
     void setElevation(float elevation) override;

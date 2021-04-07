@@ -7,12 +7,6 @@ Encoder::Encoder(Dimension dimension, size_t order, const IFactory& factory)
 {
 }
 
-void Encoder::setRadius(float radius)
-{
-    const auto clamped = std::clamp(radius, 0.f, 100.f);
-    hoaEncoder_->setRadius((100.f - clamped)/ 100.f);
-}
-
 void Encoder::setAzimuth(float azimuth)
 {
     const auto phi = Blauert::toPhi(azimuth);

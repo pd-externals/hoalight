@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IDecoder.h"
-#include "Hoa_Decoder.hpp"
+#include <Hoa.hpp>
 
 class Decoder2D : public IDecoder
 {
@@ -15,7 +15,7 @@ public:
     size_t getNumberOfSpeakers() const override;
 
 private:
-    hoa::DecoderRegular<hoa::Dimension::Hoa2d, float> hoaDecoder_;
+    hoa::Decoder<hoa::Dimension::Hoa2d, float>::Regular hoaDecoder_;
 
     std::vector<float> output_;
 };

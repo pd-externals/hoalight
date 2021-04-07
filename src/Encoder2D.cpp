@@ -7,11 +7,6 @@ Encoder2D::Encoder2D(size_t order)
     output_.resize(numHarmonics);
 }
 
-void Encoder2D::setRadius(float radius)
-{
-    hoaEncoder_.setRadius(radius);
-}
-
 void Encoder2D::setAzimuth(float azimuth)
 {
     hoaEncoder_.setAzimuth(azimuth);
