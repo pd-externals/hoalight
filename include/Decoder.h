@@ -48,7 +48,7 @@ public:
 
     ~Decoder() override = default;
 
-    std::vector<float> decode(const std::vector<float>& encodedSample) override
+    std::vector<float> process(const std::vector<float>& encodedSample) override
     {
         decoder_.process(encodedSample.data(), output_.data());
         return output_;

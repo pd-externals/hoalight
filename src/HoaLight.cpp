@@ -65,7 +65,6 @@ std::vector<float> HoaLight::getAmplitudes() const
 {
     if(!encoder_)
         return std::vector<float>();
-    return decoder_->decode(encoder_->encode());
 }
 
 size_t HoaLight::getNumberOfSpeakers() const
@@ -77,6 +76,5 @@ size_t HoaLight::getNumberOfSpeakers() const
 
 void HoaLight::updateCore()
 {
-    encoder_ = factory_->createEncoder(dimension_, order_);
-    decoder_ = factory_->createDecoder(dimension_, order_, positions_);
+
 }

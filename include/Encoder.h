@@ -49,7 +49,7 @@ public:
         EncoderDispatcher<T>::setElevation(encoder_, elevation);
     }
 
-    std::vector<float> encode() override
+    std::vector<float> process() override
     {
         const static auto input = 1.f;
         encoder_.process(&input, output_.data());

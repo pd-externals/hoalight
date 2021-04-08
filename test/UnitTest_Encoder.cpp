@@ -97,5 +97,5 @@ TEST_F(UnitTest_Encoder, process)
     EXPECT_CALL(*encoderMockPtr_, encode);
 
     auto&& encoder = Encoder(Dimension::Three, 3, factoryMock_);
-    encoder.encode();
+    encoder.process();
 }

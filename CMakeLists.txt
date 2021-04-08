@@ -9,6 +9,7 @@ add_subdirectory(test)
 
 add_library(HOALightWrapper
         src/HoaLight.cpp
+        src/Pipeline.cpp
         src/Factory.cpp
         src/Blauert.cpp
         src/HoaLightWrapper.cpp)
