@@ -1,14 +1,13 @@
 #pragma once
 #include <memory>
+#include "IProcessor.h"
 
-class IWider
+class IWider : public IProcessor
 {
 public:
     virtual ~IWider() = default;
 
     virtual void setWidening(float radius) = 0;
-
-    virtual std::vector<float> process(const std::vector<float>& bFormat);
 };
 
 using WiderPtr = std::unique_ptr<IWider>;

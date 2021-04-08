@@ -2,12 +2,10 @@
 #include <memory>
 #include <vector>
 
-class IDecoder
+class IDecoder : public IProcessor
 {
 public:
     virtual ~IDecoder() = default;
-
-    virtual std::vector<float> process(const std::vector<float>& bFormat) = 0;
 
     virtual size_t getNumberOfSpeakers() const = 0;
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "IProcessor.h"
 
 class IEncoder
 {
