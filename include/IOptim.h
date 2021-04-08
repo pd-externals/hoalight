@@ -7,7 +7,7 @@ public:
 
     virtual ~IOptim() = default;
 
-    virtual void process(float* in, float* out);
+    virtual std::vector<float> process(const std::vector<float>& bFormat) = 0;
 };
 
 using OptimPtr = std::unique_ptr<IOptim>;

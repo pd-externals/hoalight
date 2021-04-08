@@ -1,23 +1,63 @@
 #pragma once
 
 #include <Hoa.hpp>
+#include "Blauert.h"
 #include "Dimension.h"
 #include "IEncoder.h"
 #include "IFactory.h"
 
+template<typename T>
+struct EncoderDispatcher{};
+
+template<>
+struct EncoderDispatcher<hoa::Encoder<hoa::Hoa2d, float>::Basic>
+{
+    static void setElevation(hoa::Encoder<hoa::Hoa2d, float>::Basic& encoder, float elevation)
+    {
+        // do nothing
+    }
+};
+
+template<>
+struct EncoderDispatcher<hoa::Encoder<hoa::Hoa3d, float>::Basic>
+{
+    static void setElevation(hoa::Encoder<hoa::Hoa3d, float>::Basic& encoder, float elevation)
+    {
+        const auto theta = Blauert::toTheta(elevation);
+        encoder.setElevation(theta);
+    }
+};
+
+template <typename T>
 class Encoder : public IEncoder
 {
 public:
-    Encoder(Dimension dimension, size_t order, const IFactory& factory);
+    Encoder(size_t order)
+    :encoder_(order)
+    {}
 
-    ~Encoder() = default;
+    ~Encoder() override = default;
 
-    void setAzimuth(float azimuth) override;
+    void setAzimuth(float azimuth) override
+    {
+        const auto phi = Blauert::toPhi(azimuth);
+        encoder_.setAzimuth(phi);
+    }
 
-    void setElevation(float elevation) override;
+    void setElevation(float elevation) override
+    {
+        EncoderDispatcher<T>::setElevation(encoder_, elevation);
+    }
 
-    std::vector<float> encode() override;
+    std::vector<float> encode() override
+    {
+        const static auto input = 1.f;
+        encoder_.process(&input, output_.data());
+        return output_;
+    }
 
 private:
-    EncoderPtr hoaEncoder_;
+    std::vector<float> output_;
+    T encoder_;
 };
+

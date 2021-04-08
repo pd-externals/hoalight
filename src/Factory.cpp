@@ -1,73 +1,57 @@
+#include <memory>
+
 #include "Factory.h"
 #include "Encoder.h"
-#include "Encoder2D.h"
-#include "Encoder3D.h"
-#include "Wider2D.h"
-#include "Wider3D.h"
-#include "OptimInPhase2D.h"
-#include "OptimInPhase3D.h"
-#include "OptimMaxRe2D.h"
-#include "OptimMaxRe3D.h"
+#include "Wider.h"
+#include "Optim.h"
 #include "Decoder.h"
-#include "Decoder2D.h"
-#include "Decoder3D.h"
-
-EncoderPtr Factory::createEncoder(Dimension dimension, size_t order) const
-{
-    return std::make_unique<Encoder>(dimension, order, *this);
-}
 
 EncoderPtr Factory::createEncoder2D(size_t order) const
 {
-    return std::make_unique<Encoder2D>(order);
+    return std::make_unique<Encoder<hoa::Encoder<hoa::Hoa2d, float>::Basic>>(order);
 }
 
 EncoderPtr Factory::createEncoder3D(size_t order) const
 {
-    return std::make_unique<Encoder3D>(order);
+    return std::make_unique<Encoder<hoa::Encoder<hoa::Hoa3d, float>::Basic>>(order);
 }
 
 WiderPtr Factory::createWider2D(size_t order) const
 {
-    return std::make_unique<Wider2D>(order);
+    return std::make_unique<Wider<hoa::Wider<hoa::Hoa2d, float>>>(order);
 }
 
 WiderPtr Factory::createWider3D(size_t order) const
 {
-    return std::make_unique<Wider3D>(order);
+    return std::make_unique<Wider<hoa::Wider<hoa::Hoa3d, float>>>(order);
 }
 
 OptimPtr Factory::createOptimMaxRe2D(size_t order) const
 {
-    return std::make_unique<OptimMaxRe2D>(order);
+    return std::make_unique<Optim<hoa::Optim<hoa::Hoa2d, float>::MaxRe>>(order);
 }
 
 OptimPtr Factory::createOptimMaxRe3D(size_t order) const
 {
-    return std::make_unique<OptimMaxRe3D>(order);
+    return std::make_unique<Optim<hoa::Optim<hoa::Hoa3d, float>::MaxRe>>(order);
 }
 
 OptimPtr Factory::createOptimInPhase2D(size_t order) const
 {
-    return std::make_unique<OptimInPhase2D>(order);
+    return std::make_unique<Optim<hoa::Optim<hoa::Hoa2d, float>::InPhase>>(order);
 }
 
 OptimPtr Factory::createOptimInPhase3D(size_t order) const
 {
-    return std::make_unique<OptimInPhase3D>(order);
-}
-
-DecoderPtr Factory::createDecoder(Dimension dimension, size_t order, const std::vector<float>& positions) const
-{
-    return std::make_unique<Decoder>(dimension, order, positions, *this);
+    return std::make_unique<Optim<hoa::Optim<hoa::Hoa3d, float>::InPhase>>(order);
 }
 
 DecoderPtr Factory::createDecoder2D(size_t order, const std::vector<float>& positions) const
 {
-    return std::make_unique<Decoder2D>(order, positions);
+    return std::make_unique<Decoder<hoa::Decoder<hoa::Hoa2d, float>::Regular>>(order, positions);
 }
 
 DecoderPtr Factory::createDecoder3D(size_t order, const std::vector<float>& positions) const
 {
-    return std::make_unique<Decoder3D>(order, positions);
+    return std::make_unique<Decoder<hoa::Decoder<hoa::Hoa3d, float>::Regular>>(order, positions);
 }
