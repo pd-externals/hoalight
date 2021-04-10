@@ -16,6 +16,14 @@ public:
 
     std::vector<float> process() override;
 
+    void setAzimuth(float azimuth) override;
+
+    void setElevation(float elevation) override;
+
+    void setRadius(float radius) override;
+
+    size_t getNumberOfSpeakers() const override;
+
 private:
     EncoderPtr encoder_;
     WiderPtr wider_;

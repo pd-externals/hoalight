@@ -4,35 +4,38 @@
 #include "IEncoder.h"
 #include "IDecoder.h"
 #include "IFactory.h"
+#include "IPipeline.h"
+#include "PipelineProperty.h"
+#include "OptimType.h"
 
 class HoaLight
 {
 public:
     HoaLight(FactoryPtr factory);
 
-    bool setOrder(float order);
+    void setOrder(int order);
 
-    bool setAzimuth(float azimuth);
+    void setAzimuth(float azimuth);
 
-    bool setElevation(float elevation);
+    void setElevation(float elevation);
 
-    bool setRadius(float radius);
+    void setRadius(float radius);
 
-    bool defineSpeakers(const std::vector<float>& defineSpeakers);
+    void setOptim(OptimType optimType);
+
+    void defineSpeakers(const std::vector<float>& defineSpeakers);
 
     std::vector<float> getAmplitudes() const;
 
     size_t getNumberOfSpeakers() const;
 
+    bool isPrepared() const;
+
 private:
+    bool prepared_;
     FactoryPtr factory_;
+    PipelinePtr pipeline_;
+    PipelineProperty pipelineProperty_;
 
-    EncoderPtr encoder_;
-    DecoderPtr decoder_;
-
-    size_t order_;
-    Dimension dimension_;
-    std::vector<float> positions_;
-
-    void updateCore();
+    void reloadPipeline();
 };

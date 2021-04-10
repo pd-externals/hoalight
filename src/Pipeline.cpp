@@ -28,3 +28,23 @@ std::vector<float> Pipeline::process()
         bFormat = optim_->process(bFormat);
     return decoder_->process(bFormat);
 }
+
+void Pipeline::setAzimuth(float azimuth)
+{
+    encoder_->setAzimuth(azimuth);
+}
+
+void Pipeline::setElevation(float elevation)
+{
+    encoder_->setElevation(elevation);
+}
+
+void Pipeline::setRadius(float radius)
+{
+    wider_->setWidening(radius);
+}
+
+size_t Pipeline::getNumberOfSpeakers() const
+{
+    decoder_->getNumberOfSpeakers();
+}

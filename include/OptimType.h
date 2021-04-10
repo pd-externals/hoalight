@@ -6,3 +6,4 @@ enum class OptimType
     MaxRe,
     InPhase
 };
+

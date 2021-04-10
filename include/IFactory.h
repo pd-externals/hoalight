@@ -5,6 +5,8 @@
 #include "IWider.h"
 #include "IOptim.h"
 #include "IDecoder.h"
+#include "IPipeline.h"
+#include "PipelineProperty.h"
 
 class IFactory
 {
@@ -30,6 +32,8 @@ public:
     virtual DecoderPtr createDecoder2D(size_t order, const std::vector<float>& positions) const = 0;
 
     virtual DecoderPtr createDecoder3D(size_t order, const std::vector<float>& positions) const = 0;
+
+    virtual PipelinePtr createPipeline(const PipelineProperty& pipelineProperty) const = 0;
 };
 
 using FactoryPtr = std::unique_ptr<IFactory>;

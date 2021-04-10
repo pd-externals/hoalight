@@ -25,4 +25,6 @@ public:
     DecoderPtr createDecoder2D(size_t order, const std::vector<float>& positions) const override;
 
     DecoderPtr createDecoder3D(size_t order, const std::vector<float>& positions) const override;
+
+    PipelinePtr createPipeline(const PipelineProperty& pipelineProperty) const override;
 };

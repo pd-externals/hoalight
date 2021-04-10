@@ -5,6 +5,7 @@
 #include "Wider.h"
 #include "Optim.h"
 #include "Decoder.h"
+#include "Pipeline.h"
 
 EncoderPtr Factory::createEncoder2D(size_t order) const
 {
@@ -54,4 +55,9 @@ DecoderPtr Factory::createDecoder2D(size_t order, const std::vector<float>& posi
 DecoderPtr Factory::createDecoder3D(size_t order, const std::vector<float>& positions) const
 {
     return std::make_unique<Decoder<hoa::Decoder<hoa::Hoa3d, float>::Regular>>(order, positions);
+}
+
+PipelinePtr Factory::createPipeline(const PipelineProperty& pipelineProperty) const
+{
+    return std::make_unique<Pipeline>(pipelineProperty, *this);
 }

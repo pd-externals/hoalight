@@ -1,80 +1,67 @@
 #include "HoaLight.h"
 
-namespace
-{
-    Dimension validateDimension(float dimension)
-    {
-        if (dimension == 2.f)
-            return Dimension::Two;
-        if (dimension == 3.f)
-            return Dimension::Three;
-        return Dimension::Unknown;
-    }
-}
-
 HoaLight::HoaLight(FactoryPtr factory)
-: factory_(std::move(factory))
-, order_(1)
+: prepared_(false)
+, factory_(std::move(factory))
 {}
 
-bool HoaLight::setOrder(float order)
+void HoaLight::setOrder(int order)
 {
-    if(positions_.empty())
-        return false;
-
-    auto intOrder = static_cast<int>(order);
-    order_ = std::clamp(intOrder, 1, 16);
-    updateCore();
-    return true;
+    pipelineProperty_.order = std::clamp(order, 1, 16);
+    if(pipeline_!= nullptr)
+        reloadPipeline();
 }
 
-bool HoaLight::defineSpeakers(const std::vector<float>& defineSpeakers)
+void HoaLight::defineSpeakers(const std::vector<float>& defineSpeakers)
 {
-    if(defineSpeakers.size() < 2)
-        return false;
+    if(defineSpeakers[0] == 2.f)
+        pipelineProperty_.dimension = Dimension::Two;
+    if(defineSpeakers[0] == 3.f)
+        pipelineProperty_.dimension = Dimension::Three;
 
-    const auto dimension = validateDimension(defineSpeakers[0]);
-    if(dimension == Dimension::Unknown)
-        return false;
-
-    dimension_ = dimension;
-    positions_ = std::vector(defineSpeakers.begin() + 1, defineSpeakers.end());
-    updateCore();
-    return true;
+    pipelineProperty_.speakerPositions = std::vector(defineSpeakers.begin() + 1, defineSpeakers.end());
+    reloadPipeline();
 }
 
-bool HoaLight::setAzimuth(float azimuth)
+void HoaLight::setAzimuth(float azimuth)
 {
-    if(!encoder_)
-        return false;
-
-    encoder_->setAzimuth(azimuth);
-    return true;
+    pipeline_->setAzimuth(azimuth);
 }
 
-bool HoaLight::setElevation(float elevation)
+void HoaLight::setElevation(float elevation)
 {
-    if(!encoder_)
-        return false;
+    pipeline_->setElevation(elevation);
+}
 
-    encoder_->setElevation(elevation);
-    return true;
+void HoaLight::setRadius(float radius)
+{
+    pipeline_->setRadius(radius);
+}
+
+void HoaLight::setOptim(OptimType optimType)
+{
+    pipelineProperty_.optimType = optimType;
+    if(pipeline_!= nullptr)
+        reloadPipeline();
 }
 
 std::vector<float> HoaLight::getAmplitudes() const
 {
-    if(!encoder_)
-        return std::vector<float>();
+    return pipeline_->process();
 }
 
 size_t HoaLight::getNumberOfSpeakers() const
 {
-    if(!encoder_)
-        return 0;
-    return decoder_->getNumberOfSpeakers();
+    return pipeline_->getNumberOfSpeakers();
 }
 
-void HoaLight::updateCore()
+void HoaLight::reloadPipeline()
 {
+    pipeline_ = factory_->createPipeline(pipelineProperty_);
+    prepared_ = true;
+}
 
+bool HoaLight::isPrepared() const
+{
+    return prepared_;
 }

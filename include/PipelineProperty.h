@@ -5,9 +5,9 @@
 
 struct PipelineProperty
 {
-    Dimension dimension = Dimension::Two;
+    Dimension dimension = Dimension::Unknown;
+    std::vector<float> speakerPositions;
     size_t order = 1;
     OptimType optimType = OptimType::None;
-    std::vector<float> speakerPositions;
 };
 
