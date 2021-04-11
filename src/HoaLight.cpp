@@ -1,8 +1,7 @@
 #include "HoaLight.h"
 
 HoaLight::HoaLight(FactoryPtr factory)
-: prepared_(false)
-, factory_(std::move(factory))
+: factory_(std::move(factory))
 {}
 
 void HoaLight::setOrder(int order)
@@ -16,7 +15,7 @@ void HoaLight::defineSpeakers(const std::vector<float>& defineSpeakers)
 {
     if(defineSpeakers[0] == 2.f)
         pipelineProperty_.dimension = Dimension::Two;
-    if(defineSpeakers[0] == 3.f)
+    else if(defineSpeakers[0] == 3.f)
         pipelineProperty_.dimension = Dimension::Three;
 
     pipelineProperty_.speakerPositions = std::vector(defineSpeakers.begin() + 1, defineSpeakers.end());
@@ -55,13 +54,12 @@ size_t HoaLight::getNumberOfSpeakers() const
     return pipeline_->getNumberOfSpeakers();
 }
 
+bool HoaLight::isPrepared() const
+{
+    return pipeline_ != nullptr;
+}
+
 void HoaLight::reloadPipeline()
 {
     pipeline_ = factory_->createPipeline(pipelineProperty_);
-    prepared_ = true;
-}
-
-bool HoaLight::isPrepared() const
-{
-    return prepared_;
 }

@@ -32,7 +32,6 @@ public:
     bool isPrepared() const;
 
 private:
-    bool prepared_;
     FactoryPtr factory_;
     PipelinePtr pipeline_;
     PipelineProperty pipelineProperty_;
