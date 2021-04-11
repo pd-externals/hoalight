@@ -14,13 +14,13 @@ public:
 
     WiderPtr createWider3D(size_t order) const override;
 
-    OptimPtr createOptimMaxRe2D(size_t order) const override;
+    ProcessorPtr createOptimMaxRe2D(size_t order) const override;
 
-    OptimPtr createOptimMaxRe3D(size_t order) const override;
+    ProcessorPtr createOptimMaxRe3D(size_t order) const override;
 
-    OptimPtr createOptimInPhase2D(size_t order) const override;
+    ProcessorPtr createOptimInPhase2D(size_t order) const override;
 
-    OptimPtr createOptimInPhase3D(size_t order) const override;
+    ProcessorPtr createOptimInPhase3D(size_t order) const override;
 
     DecoderPtr createDecoder2D(size_t order, const std::vector<float>& positions) const override;
 

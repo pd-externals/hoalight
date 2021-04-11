@@ -19,9 +19,12 @@ public:
         wider_.setWidening(radius);
     }
 
-    std::vector<float> process(const std::vector<float>& bFormat) override
+    std::vector<float> process(const std::vector<float>& input) override
     {
-        return IWider::process(bFormat);
+        std::vector<float> out;
+        out.resize(input.size());
+        wider_.process(input.data(), out.data());
+        return out;
     }
 
 private:

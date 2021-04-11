@@ -3,7 +3,6 @@
 #include "Dimension.h"
 #include "IEncoder.h"
 #include "IWider.h"
-#include "IOptim.h"
 #include "IDecoder.h"
 #include "IPipeline.h"
 #include "PipelineProperty.h"
@@ -21,13 +20,13 @@ public:
 
     virtual WiderPtr createWider3D(size_t order) const = 0;
 
-    virtual OptimPtr createOptimMaxRe2D(size_t order) const = 0;
+    virtual ProcessorPtr createOptimMaxRe2D(size_t order) const = 0;
 
-    virtual OptimPtr createOptimMaxRe3D(size_t order) const = 0;
+    virtual ProcessorPtr createOptimMaxRe3D(size_t order) const = 0;
 
-    virtual OptimPtr createOptimInPhase2D(size_t order) const = 0;
+    virtual ProcessorPtr createOptimInPhase2D(size_t order) const = 0;
 
-    virtual OptimPtr createOptimInPhase3D(size_t order) const = 0;
+    virtual ProcessorPtr createOptimInPhase3D(size_t order) const = 0;
 
     virtual DecoderPtr createDecoder2D(size_t order, const std::vector<float>& positions) const = 0;
 

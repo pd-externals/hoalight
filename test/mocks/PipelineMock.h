@@ -1,17 +1,16 @@
 #pragma once
-#include <gmock/gmock.h>
-#include <IEncoder.h>
+#include <IPipeline.h>
 
-class EncoderMock : public IEncoder {
+class PipelineMock : public IPipeline {
 
 public:
-    ~EncoderMock() = default;
-
-    MOCK_METHOD1(setRadius, void(float radius));
-
     MOCK_METHOD1(setAzimuth, void(float azimuth));
 
     MOCK_METHOD1(setElevation, void(float elevation));
+
+    MOCK_METHOD1(setRadius, void(float radius));
+
+    MOCK_CONST_METHOD0(getNumberOfSpeakers, size_t());
 
     MOCK_METHOD0(process, std::vector<float>());
 };

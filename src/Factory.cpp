@@ -27,22 +27,22 @@ WiderPtr Factory::createWider3D(size_t order) const
     return std::make_unique<Wider<hoa::Wider<hoa::Hoa3d, float>>>(order);
 }
 
-OptimPtr Factory::createOptimMaxRe2D(size_t order) const
+ProcessorPtr Factory::createOptimMaxRe2D(size_t order) const
 {
     return std::make_unique<Optim<hoa::Optim<hoa::Hoa2d, float>::MaxRe>>(order);
 }
 
-OptimPtr Factory::createOptimMaxRe3D(size_t order) const
+ProcessorPtr Factory::createOptimMaxRe3D(size_t order) const
 {
     return std::make_unique<Optim<hoa::Optim<hoa::Hoa3d, float>::MaxRe>>(order);
 }
 
-OptimPtr Factory::createOptimInPhase2D(size_t order) const
+ProcessorPtr Factory::createOptimInPhase2D(size_t order) const
 {
     return std::make_unique<Optim<hoa::Optim<hoa::Hoa2d, float>::InPhase>>(order);
 }
 
-OptimPtr Factory::createOptimInPhase3D(size_t order) const
+ProcessorPtr Factory::createOptimInPhase3D(size_t order) const
 {
     return std::make_unique<Optim<hoa::Optim<hoa::Hoa3d, float>::InPhase>>(order);
 }

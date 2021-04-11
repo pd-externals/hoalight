@@ -4,7 +4,6 @@
 #include "PipelineProperty.h"
 #include "IPipeline.h"
 #include "IEncoder.h"
-#include "IOptim.h"
 #include "IWider.h"
 #include "IDecoder.h"
 #include "IFactory.h"
@@ -13,6 +12,8 @@ class Pipeline : public IPipeline
 {
 public:
     Pipeline(const PipelineProperty& pipelineProperty, const IFactory& factory);
+
+    ~Pipeline() override = default;
 
     std::vector<float> process() override;
 
@@ -27,6 +28,6 @@ public:
 private:
     EncoderPtr encoder_;
     WiderPtr wider_;
-    OptimPtr optim_;
+    ProcessorPtr optim_;
     DecoderPtr decoder_;
 };

@@ -11,7 +11,7 @@ void* createHoaLight()
 
 void destroyHoaLight(void* hoaLight)
 {
-    auto&& condemned = std::unique_ptr<HoaLight>(static_cast<HoaLight*>(hoaLight));
+    std::unique_ptr<HoaLight>(static_cast<HoaLight*>(hoaLight));
 }
 
 void setOrder(void* hoaLight, float order)

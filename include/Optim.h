@@ -1,10 +1,10 @@
 #pragma once
 
-#include "IOptim.h"
+#include "IProcessor.h"
 #include <Hoa.hpp>
 
 template <typename T>
-class Optim : public IOptim
+class Optim : public IProcessor
 {
 public:
     Optim(size_t order)
@@ -14,11 +14,11 @@ public:
 
     ~Optim() override = default;
 
-    std::vector<float> process(const std::vector<float>& bFormat) override
+    std::vector<float> process(const std::vector<float>& input) override
     {
         std::vector<float> out;
-        out.resize(bFormat.size());
-        optim_.process(&bFormat[0], &out[0]);
+        out.resize(input.size());
+        optim_.process(input.data(), out.data());
         return out;
     }
 

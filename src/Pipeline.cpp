@@ -2,7 +2,7 @@
 
 namespace
 {
-    OptimPtr createOptim(const PipelineProperty& pp, const IFactory& factory)
+    ProcessorPtr createOptim(const PipelineProperty& pp, const IFactory& factory)
     {
         if(pp.optimType == OptimType::None)
             return nullptr;
@@ -46,5 +46,6 @@ void Pipeline::setRadius(float radius)
 
 size_t Pipeline::getNumberOfSpeakers() const
 {
-    decoder_->getNumberOfSpeakers();
+    return decoder_->getNumberOfSpeakers();
 }
+

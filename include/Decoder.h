@@ -48,15 +48,15 @@ public:
 
     ~Decoder() override = default;
 
-    std::vector<float> process(const std::vector<float>& encodedSample) override
+    std::vector<float> process(const std::vector<float>& input) override
     {
-        decoder_.process(encodedSample.data(), output_.data());
+        decoder_.process(input.data(), output_.data());
         return output_;
     }
 
     size_t getNumberOfSpeakers() const override
     {
-        decoder_.getNumberOfPlanewaves();
+        return decoder_.getNumberOfPlanewaves();
     }
 
 private:

@@ -20,5 +20,3 @@ target_include_directories(HOALightWrapper
         include
         ThirdParty/HoaLibrary-Light/Sources)
 
-target_link_libraries(HOALightWrapper PUBLIC HoaLibrary)
-
