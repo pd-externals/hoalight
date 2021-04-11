@@ -14,81 +14,81 @@ void destroyHoaLight(void* hoaLight)
     auto&& condemned = std::unique_ptr<HoaLight>(static_cast<HoaLight*>(hoaLight));
 }
 
-int setOrder(void* hoaLight, float order)
+void setOrder(void* hoaLight, float order)
 {
     auto* core = static_cast<HoaLight*>(hoaLight);
     core->setOrder(static_cast<int>(order));
 }
 
-int setOptim(void* hoaLight, char* optim)
+bool setOptim(void* hoaLight, const char* optim)
 {
     auto* core = static_cast<HoaLight*>(hoaLight);
     auto optimStr = std::string(optim);
     if(optimStr == "MaxRe")
     {
         core->setOptim(OptimType::MaxRe);
-        return 1;
+        return true;
     }
     if(optimStr == "InPhase")
     {
         core->setOptim(OptimType::InPhase);
-        return 1;
+        return true;
     }
     if(optimStr == "None")
     {
         core->setOptim(OptimType::None);
-        return 1;
+        return true;
     }
-    return 0;
+    return false;
 }
 
-int defineSpeakers(void* hoaLight, int argc, float* argv)
+bool defineSpeakers(void* hoaLight, int argc, float* argv)
 {
     auto* core = static_cast<HoaLight*>(hoaLight);
     auto args = std::vector<float>(argv, argv+argc);
     if(args.size() < 2)
-        return 0;
+        return false;
     if(!(args[0] == 2.f || args[0] == 3.f))
-        return 0;
+        return false;
     core->defineSpeakers(args);
-    return 1;
+    return true;
 }
 
-int setAzimuth(void* hoaLight, float azimuth)
+bool setAzimuth(void* hoaLight, float azimuth)
 {
     auto* core = static_cast<HoaLight*>(hoaLight);
     if(!core->isPrepared())
-        return 0;
+        return false;
     core->setAzimuth(azimuth);
-    return 1;
+    return true;
 }
 
-int setElevation(void* hoaLight, float elevation)
+bool setElevation(void* hoaLight, float elevation)
 {
     auto* core = static_cast<HoaLight*>(hoaLight);
     if(!core->isPrepared())
-        return 0;
+        return false;
     core->setElevation(elevation);
-    return 1;
+    return true;
 }
 
-int setRadius(void* hoaLight, float radius)
+bool setRadius(void* hoaLight, float radius)
 {
     auto* core = static_cast<HoaLight*>(hoaLight);
     if(!core->isPrepared())
-        return 0;
+        return false;
     core->setRadius(radius);
-    return 1;
+    return true;
 }
 
-int getAmplitudes(void* hoaLight, float* outAmplitude)
+bool getAmplitudes(void* hoaLight, float* outAmplitude)
 {
     auto* core = static_cast<HoaLight*>(hoaLight);
     if(!core->isPrepared())
-        return 0;
+        return false;
     auto amps = core->getAmplitudes();
     std::memcpy(outAmplitude, amps.data(), sizeof(float) * amps.size());
-    return 1;
+    return true;
 }
 
 int getNumberOfSpeakers(void* hoaLight)
