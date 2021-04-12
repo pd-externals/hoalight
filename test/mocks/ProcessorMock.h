@@ -7,5 +7,5 @@ class ProcessorMock : public IProcessor {
 public:
     ~ProcessorMock() = default;
 
-    MOCK_METHOD0(process, std::vector<float>());
+    MOCK_METHOD1(process, std::vector<float>(const std::vector<float>&));
 };

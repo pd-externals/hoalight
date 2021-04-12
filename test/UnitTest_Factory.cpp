@@ -100,7 +100,8 @@ TEST(UnitTest_Factory, createDecoder3D)
 
 TEST(UnitTest_Factory, createPipeline)
 {
-    auto&& pipeline = Factory().createPipeline(PipelineProperty());
+    auto&& pp = PipelineProperty {Dimension::Two, std::vector<float>{30.f, -30.f}, 1, OptimType::MaxRe};
+    auto&& pipeline = Factory().createPipeline(pp);
     ASSERT_THAT(pipeline, NotNull());
     EXPECT_THAT(pipeline.get(), WhenDynamicCastTo<Pipeline*>(NotNull()));
 }

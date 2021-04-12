@@ -1,4 +1,5 @@
 #include "Pipeline.h"
+#include <stdexcept>
 
 namespace
 {
@@ -15,9 +16,11 @@ namespace
 Pipeline::Pipeline(const PipelineProperty& pp, const IFactory& factory)
 : encoder_(pp.dimension == Dimension::Two ? factory.createEncoder2D(pp.order) : factory.createEncoder3D(pp.order))
 , wider_(pp.dimension == Dimension::Two ? factory.createWider2D(pp.order) : factory.createWider3D(pp.order))
-, optim_(createOptim(pp,factory))
+, optim_(createOptim(pp, factory))
 , decoder_(pp.dimension == Dimension::Two ? factory.createDecoder2D(pp.order, pp.speakerPositions) : factory.createDecoder3D(pp.order, pp.speakerPositions))
 {
+    if(pp.dimension == Dimension::Unknown || pp.speakerPositions.size() < 1)
+        throw std::invalid_argument("invalid pipeline property");
 }
 
 std::vector<float> Pipeline::process()
