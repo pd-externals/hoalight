@@ -16,8 +16,7 @@ public:
 
     std::vector<float> process(const std::vector<float>& input) override
     {
-        std::vector<float> out;
-        out.resize(input.size());
+        std::vector<float> out(input.size());
         optim_.process(input.data(), out.data());
         return out;
     }

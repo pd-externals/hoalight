@@ -7,8 +7,7 @@ namespace Blauert
 
     float toPhi(float azimuth)
     {
-        auto folded = azimuth > 90.f ? azimuth - 360.f : azimuth;
-        return (1.0f - (folded + 270.f) / 360.f) * pi * 2.f;
+        return -azimuth / 360.f * pi * 2.f;
     }
 
     float toTheta(float elevation)

@@ -41,8 +41,6 @@ public:
     Decoder(size_t order, const std::vector<float>& positions)
     :decoder_(order, positions.size())
     {
-        const auto numSpeaker = positions.size();
-        output_.resize(numSpeaker);
         DecoderDispatcher<T>::setPositions(decoder_, positions);
     }
 
@@ -50,8 +48,9 @@ public:
 
     std::vector<float> process(const std::vector<float>& input) override
     {
-        decoder_.process(input.data(), output_.data());
-        return output_;
+        auto&& output = std::vector<float>(decoder_.getNumberOfPlanewaves());
+        decoder_.process(input.data(), output.data());
+        return output;
     }
 
     size_t getNumberOfSpeakers() const override
@@ -61,5 +60,4 @@ public:
 
 private:
     T decoder_;
-    std::vector<float> output_;
 };

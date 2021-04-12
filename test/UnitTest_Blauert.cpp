@@ -29,13 +29,14 @@ INSTANTIATE_TEST_SUITE_P(
         ParameterizedTest_Blauert,
         UnitTest_Blauert,
         Values(
-                BlauertTestData{0.f, 0.f, M_PI_2, 0}, // front
-                BlauertTestData{0.f, 90.f, M_PI_2, M_PI / 2.f} ,// top
-                BlauertTestData{0.f, 90.1f, M_PI_2, M_PI / 2.f} ,// top
-                BlauertTestData{0.f, -90.f, M_PI_2, -M_PI / 2.f}, // bottom
-                BlauertTestData{0.f, -90.1f, M_PI_2, -M_PI / 2.f}, // bottom
-                BlauertTestData{-90.f, 0.f, M_PI, 0.f}, // left
-                BlauertTestData{90.f, 0.f, 0.f, 0.f} ,// right
-                BlauertTestData{180.f, 0.f, M_PI_2 + M_PI, 0.f}, // back
-                BlauertTestData{180.1f, 0.f, M_PI_2 + M_PI, 0.f} // back
-        ));
+                BlauertTestData{0.f, 0.f, 0.f, 0.f}, // front
+                BlauertTestData{0.f, 90.f, 0.f, M_PI_2} ,// top
+                BlauertTestData{0.f, -90.f, 0.f, -M_PI_2}, // bottom
+                BlauertTestData{-90.f, 0.f, M_PI_2, 0.f}, // left
+                BlauertTestData{90.f, 0.f, -M_PI_2, 0.f} ,// right
+                BlauertTestData{180.f, 0.f, -M_PI, 0.f}, // back
+                BlauertTestData{360.f, 0.f, -M_PI * 2.f, 0.f}, // front
+                BlauertTestData{-360.f, 0.f, M_PI * 2.f, 0.f} // front
+
+        )
+);

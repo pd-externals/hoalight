@@ -4,7 +4,7 @@ add_executable(HOALightWrapper_Test
         UnitTest_HoaLight.cpp
 #        UnitTest_Decoder.cpp
         UnitTest_Factory.cpp
-#        UnitTest_Blauert.cpp
+        UnitTest_Blauert.cpp
         UnitTest_Pipeline.cpp
 #        IntegrationTest_Encoder.cpp
         )
