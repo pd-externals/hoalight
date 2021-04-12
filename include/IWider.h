@@ -7,7 +7,7 @@ class IWider : public IProcessor
 public:
     virtual ~IWider() = default;
 
-    virtual void setWidening(float radius) = 0;
+    virtual void setWidening(float param) = 0;
 };
 
 using WiderPtr = std::unique_ptr<IWider>;

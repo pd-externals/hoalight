@@ -44,7 +44,7 @@ void Pipeline::setElevation(float elevation)
 
 void Pipeline::setRadius(float radius)
 {
-    wider_->setWidening(radius);
+    wider_->setWidening(1.f - (std::clamp(radius, 0.f, 100.f) / 100.f));
 }
 
 size_t Pipeline::getNumberOfSpeakers() const

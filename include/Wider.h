@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <vector>
 #include <Hoa.hpp>
 #include "IWider.h"
@@ -14,15 +15,14 @@ public:
 
     ~Wider() override = default;
 
-    void setWidening(float radius) override
+    void setWidening(float param) override
     {
-        wider_.setWidening(radius);
+        wider_.setWidening(param);
     }
 
     std::vector<float> process(const std::vector<float>& input) override
     {
-        std::vector<float> out;
-        out.resize(input.size());
+        auto&& out = std::vector<float>(input.size());
         wider_.process(input.data(), out.data());
         return out;
     }

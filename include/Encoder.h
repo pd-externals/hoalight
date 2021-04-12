@@ -52,12 +52,12 @@ public:
     std::vector<float> process() override
     {
         const static auto input = 1.f;
-        encoder_.process(&input, output_.data());
-        return output_;
+        auto&& output = std::vector<float>(encoder_.getNumberOfHarmonics());
+        encoder_.process(&input, output.data());
+        return output;
     }
 
 private:
-    std::vector<float> output_;
     T encoder_;
 };
 

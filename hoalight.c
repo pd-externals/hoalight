@@ -46,12 +46,12 @@ void hoalight_azimuth(t_hoalight *x, float value) {
 }
 
 void hoalight_elevation(t_hoalight *x, float value) {
-    if(!setElevation(x->core, value) == 0)
+    if(!setElevation(x->core, value))
         post("speakers are not defined yet");
 }
 
 void hoalight_radius(t_hoalight *x, float value) {
-    if(!setRadius(x->core, value) == 0)
+    if(!setRadius(x->core, value))
         post("speakers are not defined yet");
 }
 
