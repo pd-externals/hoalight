@@ -163,11 +163,29 @@ TEST_F(UnitTest_Pipeline, setElevation)
 
 TEST_F(UnitTest_Pipeline, setRadius)
 {
-    EXPECT_CALL(*widerMockPtr_, setWidening(30.f)).Times(1);
+    EXPECT_CALL(*widerMockPtr_, setWidening(0.3f)).Times(1);
 
     auto&& pp = PipelineProperty {Dimension::Three, std::vector<float>{30.f, 30.f}, 1, OptimType::MaxRe};
     auto&& pipeline = Pipeline(pp, factoryMock_);
-    pipeline.setRadius(30.f);
+    pipeline.setRadius(70.f);
+}
+
+TEST_F(UnitTest_Pipeline, setRadius_greater_than_100)
+{
+    EXPECT_CALL(*widerMockPtr_, setWidening(0.f)).Times(1);
+
+    auto&& pp = PipelineProperty {Dimension::Three, std::vector<float>{30.f, 30.f}, 1, OptimType::MaxRe};
+    auto&& pipeline = Pipeline(pp, factoryMock_);
+    pipeline.setRadius(101.f);
+}
+
+TEST_F(UnitTest_Pipeline, setRadius_negative)
+{
+    EXPECT_CALL(*widerMockPtr_, setWidening(1.f)).Times(1);
+
+    auto&& pp = PipelineProperty {Dimension::Three, std::vector<float>{30.f, 30.f}, 1, OptimType::MaxRe};
+    auto&& pipeline = Pipeline(pp, factoryMock_);
+    pipeline.setRadius(-1.f);
 }
 
 TEST_F(UnitTest_Pipeline, getNumberOfSpeakers)
