@@ -1,5 +1,6 @@
 #include <gmock/gmock.h>
 #include <Pipeline.h>
+#include <Blauert.h>
 
 #include "FactoryMock.h"
 #include "DecoderMock.h"
@@ -145,7 +146,7 @@ TEST_F(UnitTest_Pipeline, process_with_optim)
 
 TEST_F(UnitTest_Pipeline, setAzimuth)
 {
-    EXPECT_CALL(*encoderMockPtr_, setAzimuth(50.f)).Times(1);
+    EXPECT_CALL(*encoderMockPtr_, setAzimuth(Blauert::toPhi(50.f))).Times(1);
 
     auto&& pp = PipelineProperty {Dimension::Three, std::vector<float>{30.f, 30.f}, 1, OptimType::MaxRe};
     auto&& pipeline = Pipeline(pp, factoryMock_);
@@ -154,7 +155,7 @@ TEST_F(UnitTest_Pipeline, setAzimuth)
 
 TEST_F(UnitTest_Pipeline, setElevation)
 {
-    EXPECT_CALL(*encoderMockPtr_, setElevation(40.f)).Times(1);
+    EXPECT_CALL(*encoderMockPtr_, setElevation(Blauert::toTheta(40.f))).Times(1);
 
     auto&& pp = PipelineProperty {Dimension::Three, std::vector<float>{30.f, 30.f}, 1, OptimType::MaxRe};
     auto&& pipeline = Pipeline(pp, factoryMock_);

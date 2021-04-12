@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Hoa.hpp>
-#include "Blauert.h"
 #include "Dimension.h"
 #include "IEncoder.h"
 #include "IFactory.h"
@@ -21,9 +20,8 @@ struct EncoderDispatcher<hoa::Encoder<hoa::Hoa2d, float>::Basic>
 template<>
 struct EncoderDispatcher<hoa::Encoder<hoa::Hoa3d, float>::Basic>
 {
-    static void setElevation(hoa::Encoder<hoa::Hoa3d, float>::Basic& encoder, float elevation)
+    static void setElevation(hoa::Encoder<hoa::Hoa3d, float>::Basic& encoder, float theta)
     {
-        const auto theta = Blauert::toTheta(elevation);
         encoder.setElevation(theta);
     }
 };
@@ -38,15 +36,14 @@ public:
 
     ~Encoder() override = default;
 
-    void setAzimuth(float azimuth) override
+    void setAzimuth(float phi) override
     {
-        const auto phi = Blauert::toPhi(azimuth);
         encoder_.setAzimuth(phi);
     }
 
-    void setElevation(float elevation) override
+    void setElevation(float theta) override
     {
-        EncoderDispatcher<T>::setElevation(encoder_, elevation);
+        EncoderDispatcher<T>::setElevation(encoder_, theta);
     }
 
     std::vector<float> process() override

@@ -1,4 +1,5 @@
 #include "Pipeline.h"
+#include "Blauert.h"
 #include <stdexcept>
 
 namespace
@@ -34,12 +35,14 @@ std::vector<float> Pipeline::process()
 
 void Pipeline::setAzimuth(float azimuth)
 {
-    encoder_->setAzimuth(azimuth);
+    const auto phi = Blauert::toPhi(azimuth);
+    encoder_->setAzimuth(phi);
 }
 
 void Pipeline::setElevation(float elevation)
 {
-    encoder_->setElevation(elevation);
+    const auto theta = Blauert::toTheta(elevation);
+    encoder_->setElevation(theta);
 }
 
 void Pipeline::setRadius(float radius)
