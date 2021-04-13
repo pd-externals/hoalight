@@ -1,33 +1,14 @@
-#N canvas 2088 190 953 705 12;
-#X obj 142 216 hoalight;
+#N canvas 2088 190 1102 741 12;
+#X obj 149 250 hoalight;
 #X obj 142 168 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X floatatom 263 150 5 0 0 2 azimuth - -;
 #X floatatom 407 153 5 0 0 2 radius - -;
-#X obj 142 294 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 5556 1;
-#X obj 163 294 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 7144 1;
-#X obj 185 295 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 11906 1;
-#X obj 206 295 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 7144 1;
-#X obj 228 295 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 5556 1;
-#X obj 249 295 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 7144 1;
-#X obj 271 296 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 5556 1;
-#X obj 292 296 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 7144 1;
 #X msg 39 176 order \$1;
 #X floatatom 38 147 5 0 0 0 - - -;
 #X text 23 12 2D;
 #X text 533 16 3D;
 #X text 59 62 standard 8-channel setting;
-#X obj 636 555 vsl 15 70 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X text 761 634 180;
 #X obj 590 221 hoalight;
 #X obj 590 173 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -40,85 +21,79 @@
 #X text 582 9 high ele 90 - azi 0;
 #X text 584 26 mid ele 45 - azi -135 -45 45 135;
 #X text 583 42 low ele 0 - azi -120 -90 -30 30 90 120;
-#X obj 658 555 vsl 15 70 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 678 555 vsl 15 70 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 699 556 vsl 15 70 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 720 556 vsl 15 70 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 744 555 vsl 15 70 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X text 618 635 -120;
-#X text 535 582 low;
-#X obj 669 327 vsl 15 70 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 630 433 vsl 15 70 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 661 434 vsl 15 70 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 693 434 vsl 15 70 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 725 435 vsl 15 70 -1 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X text 535 450 mid;
-#X text 536 346 high;
-#X text 592 458 -135;
-#X text 748 455 135;
-#X msg 546 95 define_loudspeakers 3 -120 0 -60 0 0 0 60 0 120 0 180
-0 -135 45 -45 45 45 45 135 45 0 90;
-#X obj 142 250 route 0 1 2 3 4 5 6 7;
-#X obj 590 520 route 0 1 2 3 4 5;
-#X obj 630 404 route 6 7 8 9;
-#X obj 629 298 route 10;
 #X msg 19 261 optim MaxRe;
 #X msg 21 297 optim InPhase;
 #X msg 19 336 optim None;
 #X msg 67 98 define_loudspeakers 2 0 45 90 135 180 -135 -90 -45;
-#X text 139 430 0;
-#X text 286 432 -45;
-#X connect 0 0 47 0;
+#N canvas 222 184 835 575 amp 0;
+#X floatatom 212 115 5 0 0 0 - - -;
+#X floatatom 260 151 5 0 0 0 - - -;
+#X floatatom 304 189 5 0 0 0 - - -;
+#X floatatom 264 237 5 0 0 0 - - -;
+#X floatatom 213 276 5 0 0 0 - - -;
+#X floatatom 158 241 5 0 0 0 - - -;
+#X floatatom 112 198 5 0 0 0 - - -;
+#X floatatom 148 155 5 0 0 0 - - -;
+#X obj 213 54 route 0 1 2 3 4 5 6 7;
+#X obj 213 21 inlet;
+#X connect 8 0 0 0;
+#X connect 8 1 1 0;
+#X connect 8 2 2 0;
+#X connect 8 3 3 0;
+#X connect 8 4 4 0;
+#X connect 8 5 5 0;
+#X connect 8 6 6 0;
+#X connect 8 7 7 0;
+#X connect 9 0 8 0;
+#X coords 0 -1 1 1 250 200 1 100 100;
+#X restore 149 313 pd amp;
+#N canvas 2597 802 450 348 amp 0;
+#X floatatom 173 124 5 0 0 0 - - -;
+#X floatatom 254 123 5 0 0 0 - - -;
+#X floatatom 308 185 5 0 0 0 - - -;
+#X floatatom 264 258 5 0 0 0 - - -;
+#X floatatom 183 260 5 0 0 0 - - -;
+#X floatatom 116 180 5 0 0 0 - - -;
+#X obj 98 79 route 0 1 2 3 4 5 6 7 8 9 10;
+#X obj 98 46 inlet;
+#X connect 6 0 0 0;
+#X connect 6 1 1 0;
+#X connect 6 2 2 0;
+#X connect 6 3 3 0;
+#X connect 6 4 4 0;
+#X connect 6 5 5 0;
+#X connect 7 0 6 0;
+#X coords 0 -1 1 1 250 210 1 100 100;
+#X restore 590 304 pd amp;
+#X msg 478 300 optim None;
+#X msg 479 272 optim InPhase;
+#X msg 478 241 optim MaxRe;
+#X obj 664 253 print;
+#X msg 546 95 define_loudspeakers 3 0 0 180 0, f 24;
+#X connect 0 0 24 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 1;
 #X connect 2 0 1 0;
 #X connect 3 0 0 3;
 #X connect 3 0 1 0;
-#X connect 12 0 0 0;
-#X connect 13 0 12 0;
-#X connect 19 0 48 0;
-#X connect 19 0 49 0;
-#X connect 19 0 50 0;
-#X connect 20 0 19 0;
-#X connect 21 0 19 1;
-#X connect 21 0 20 0;
-#X connect 22 0 19 2;
-#X connect 22 0 20 0;
-#X connect 23 0 19 3;
-#X connect 23 0 20 0;
-#X connect 24 0 19 0;
-#X connect 25 0 24 0;
-#X connect 46 0 19 0;
-#X connect 47 0 4 0;
-#X connect 47 1 5 0;
-#X connect 47 2 6 0;
-#X connect 47 3 7 0;
-#X connect 47 4 8 0;
-#X connect 47 5 9 0;
-#X connect 47 6 10 0;
-#X connect 47 7 11 0;
-#X connect 48 0 17 0;
-#X connect 48 1 30 0;
-#X connect 48 2 31 0;
-#X connect 48 3 32 0;
-#X connect 48 4 33 0;
-#X connect 48 5 34 0;
-#X connect 49 0 38 0;
-#X connect 49 1 39 0;
-#X connect 49 2 40 0;
-#X connect 49 3 41 0;
-#X connect 50 0 37 0;
-#X connect 51 0 0 0;
-#X connect 52 0 0 0;
-#X connect 53 0 0 0;
-#X connect 54 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 4 0;
+#X connect 9 0 25 0;
+#X connect 9 0 29 0;
+#X connect 10 0 9 0;
+#X connect 11 0 9 1;
+#X connect 11 0 10 0;
+#X connect 12 0 9 2;
+#X connect 12 0 10 0;
+#X connect 13 0 9 3;
+#X connect 13 0 10 0;
+#X connect 14 0 9 0;
+#X connect 15 0 14 0;
+#X connect 20 0 0 0;
+#X connect 21 0 0 0;
+#X connect 22 0 0 0;
+#X connect 23 0 0 0;
+#X connect 26 0 9 0;
+#X connect 27 0 9 0;
+#X connect 28 0 9 0;
+#X connect 30 0 9 0;

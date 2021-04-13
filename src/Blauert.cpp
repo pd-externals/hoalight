@@ -7,11 +7,11 @@ namespace Blauert
 
     float toPhi(float azimuth)
     {
-        return -azimuth / 360.f * pi * 2.f;
+        return azimuth / 360.f * pi * 2.f;
     }
 
     float toTheta(float elevation)
     {
-        return elevation/180.f * pi;
+        return elevation / 180.f * pi;
     }
 }

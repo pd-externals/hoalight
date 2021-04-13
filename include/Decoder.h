@@ -14,6 +14,11 @@ struct DecoderDispatcher
 template<>
 struct DecoderDispatcher<hoa::Decoder<hoa::Hoa2d, float>::Regular>
 {
+    static size_t numberOfSpeakers(size_t numberOfArgs)
+    {
+        return numberOfArgs;
+    }
+
     static void setPositions(hoa::Decoder<hoa::Hoa2d, float>& decoder, const std::vector<float>& positions)
     {
         for (auto i = size_t(0); i < positions.size(); ++i)
@@ -24,9 +29,15 @@ struct DecoderDispatcher<hoa::Decoder<hoa::Hoa2d, float>::Regular>
 template<>
 struct DecoderDispatcher<hoa::Decoder<hoa::Hoa3d, float>::Regular>
 {
+    static size_t numberOfSpeakers(size_t numberOfArgs)
+    {
+        return numberOfArgs / 2;
+    }
+
     static void setPositions(hoa::Decoder<hoa::Hoa3d, float>& decoder, const std::vector<float>& positions)
     {
-        for (auto i = size_t(0); i < positions.size(); ++i)
+        const auto numberOfSpeakers = positions.size() / 2;
+        for (auto i = size_t(0); i < numberOfSpeakers; ++i)
         {
             decoder.setPlanewaveAzimuth(i, Blauert::toPhi(positions[i * 2]));
             decoder.setPlanewaveElevation(i, Blauert::toTheta(positions[i * 2 + 1]));
@@ -39,7 +50,7 @@ class Decoder : public IDecoder
 {
 public:
     Decoder(size_t order, const std::vector<float>& positions)
-    :decoder_(order, positions.size())
+    :decoder_(order, DecoderDispatcher<T>::numberOfSpeakers(positions.size()))
     {
         DecoderDispatcher<T>::setPositions(decoder_, positions);
     }
