@@ -53,6 +53,7 @@ public:
     :decoder_(order, DecoderDispatcher<T>::numberOfSpeakers(positions.size()))
     {
         DecoderDispatcher<T>::setPositions(decoder_, positions);
+        decoder_.computeRendering();
     }
 
     ~Decoder() override = default;

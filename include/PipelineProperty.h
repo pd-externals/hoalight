@@ -10,4 +10,3 @@ struct PipelineProperty
     size_t order = 1;
     OptimType optimType = OptimType::None;
 };
-
