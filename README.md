@@ -20,4 +20,28 @@ The HOA calculations are provided by the CICM HoaLibrary-Light:
 
 ## Build
 
+1. download the submodules 
+git submodule update --init --recursive
+
+2. install Cmake
+Currently this external requires CMake version 3.10 or higher to compile
+
+3. compile the static library
+
+> mkdir build
+> cd build
+> cmake ..
+> cmake --build .
+
+after this operation you will find libHOALightWrapper.a in lib folder
+
+4. at the root of the project
+
+> make
+
+to create *hoalight.pd_darwin*
+
+
 ## Usage
+
+see the test_hoalight.pd
