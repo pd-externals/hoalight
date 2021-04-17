@@ -28,10 +28,10 @@ Currently this external requires CMake version 3.10 or higher to compile
 
 3. compile the static library
 
-> mkdir build
-> cd build
-> cmake ..
-> cmake --build .
+> mkdir build  
+> cd build  
+> cmake ..  
+> cmake --build .  
 
 after this operation you will find libHOALightWrapper.a in lib folder
 
@@ -39,7 +39,7 @@ after this operation you will find libHOALightWrapper.a in lib folder
 
 > make
 
-to create *hoalight.pd_darwin*
+to create hoalight.pd_darwin
 
 
 ## Usage
